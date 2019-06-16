@@ -14,8 +14,8 @@ def login():
 	Gestion du login de la classe
 	Verification des identifiants + récupération des éléments de la classe
 	"""
-	denis =  " Mon nom est Denis"
-	return render_template("login.html", ma_variable=denis)
+	liste_lycee =  recuperation_noms_etablissements()
+	return render_template("login.html", ma_variable=liste_lycee)
 
 @app.route('/enigme1')
 def enigme1():
