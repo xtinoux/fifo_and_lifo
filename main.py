@@ -1,8 +1,8 @@
-from flask import Flask
+from flask import Flask, render_template
 from db_utils import recuperation_noms_etablissements
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='template', static_folder='static')
 
 @app.route('/')
 def hello_world():
@@ -14,8 +14,7 @@ def login():
 	Gestion du login de la classe
 	Verification des identifiants + récupération des éléments de la classe
 	"""
-	etablissements = get_etab()
-	pass
+ 	return render_template("login.html")
 
 @app.route('/enigme1')
 def enigme1():
