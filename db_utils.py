@@ -11,7 +11,13 @@ def recuperation_noms_etablissements():
     liste_etab = cursor.fetchall()
     #print(liste_etab)
     conn.close()
-    return liste_etab   
+    #print(liste_etab[1])
+    liste = []
+    #print(len(liste_etab))
+    for i in range(len(liste_etab)):
+        liste.append(liste_etab[i][0])
+          
+    return liste   
 
 
 
@@ -28,19 +34,21 @@ def niveau_evolution_classe(identifiant):
     evolution = cursor.fetchall()
     #print(liste_etab)
     conn.close()
-    return str(evolution)
+
+    return evolution
 
 
 #print(recuperation_noms_etablissements())  
 
 if __name__ == '__main__':
+    
     etabs = recuperation_noms_etablissements()
     print(etabs)
-    print(niveau_evolution_classe(2))
-    print(niveau_evolution_classe(5))
-    print(niveau_evolution_classe(1))
-    print(niveau_evolution_classe(4))
-    print(niveau_evolution_classe(3))
+    #print(niveau_evolution_classe(2))
+    #print(niveau_evolution_classe(5))
+    #print(niveau_evolution_classe(1))
+    #print(niveau_evolution_classe(4))
+    #print(niveau_evolution_classe(3))
 
 
   
