@@ -4,6 +4,8 @@ import sqlite3
 def recuperation_noms_etablissements():
     ''' pas de parametre
     retourne la liste des etablissements
+    qui sont dans la base (pour afficher le menu choix etablissement par exemple)
+    enleve les doublons
     '''    
     conn = sqlite3.connect('static/db/fifoandlifo.db')
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
@@ -17,7 +19,7 @@ def recuperation_noms_etablissements():
     for i in range(len(liste_etab)):
         liste.append(liste_etab[i][0])
           
-    return liste   
+    return list(set(liste))   
 
 
 
