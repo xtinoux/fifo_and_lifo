@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from db_utils import recuperation_noms_etablissements
+from app.db_utils import recuperation_noms_etablissements
 
 
 app = Flask(__name__, template_folder='template', static_folder='static')
