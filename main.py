@@ -6,7 +6,11 @@ app = Flask(__name__, template_folder='template', static_folder='static')
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+	"""
+	Page d'accueil, pour présenter le projet.
+
+	"""
+    return render_template("index.html")
 
 @app.route('/login')
 def login():
@@ -23,15 +27,27 @@ def enigme1():
 	Gestion de la première enigme
 
 	"""
+		def test():
+		"""
+		Effecute les tests de l'enigme
+
+		"""
+		pass
+	
 	pass
 
-@app.route('/enigme2')
+@app.route('/enigme2', methods=["GET", "POST"])
 def enigme2():
 	"""
 
 	"""
-	pass
 
+
+	def test():
+		"effecute les tests de l'enigme"
+		pass
+
+	if request.method = "POST"
 
 @app.route('/enigme3')
 def enigme3():

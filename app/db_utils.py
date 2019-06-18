@@ -40,7 +40,12 @@ def niveau_evolution_classe(identifiant):
     return evolution
 
 
-#print(recuperation_noms_etablissements())  
+def get_enigme(enigme_uid):
+    """
+    recuperation des donnes de l'enigme sous forme d'un dictionnaire
+    """
+    pass
+
 
 if __name__ == '__main__':
     
