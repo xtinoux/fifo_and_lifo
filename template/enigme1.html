@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Enigme 1</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="quiz.css">
+    <style>
+      html,body{
+        margin: 0;
+        padding: 0;
+      }
+      .invisible{
+        display: none;
+      }
+
+      .visible{
+        display: block
+      }
+      
+      .popup{
+        background: rgba(0,0,0,0.4);
+        z-index:100;
+        height: 100vh;
+        width: 100vw;
+        position:absolute;
+        top:0;
+      }
+
+      .popup_content{
+        background-color: white;
+        width: 50%;
+        margin-left: 25%;
+        margin-top: 10%;
+        min-height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <strong>Attention cette page ne fonctionnera pas correctement sans JavaScript activé. Merci de l'activer pour pouvoir continuer.</strong>
+    </noscript>
+
+    <header>
+      <h1>Enigme 1</h1>
+    </header>
+
+ <div>
+   Il faut retrouver quel(s) parametre(s) pour obtenir ...comme résultat
+ </div>
+
+    <form class="form-example" method="POST">
+      <div class="form-example">
+        <label for="name">Valeur pour le test
+        </label>
+        <input type="text" name="test" id="test">
+      </div>
+
+ 
+
+      <div class="form-example">
+        <input type="submit" value="Effectuer le test">
+
+      </div>
+
+      {% if test_result %}
+        <div class="resultat_test">{{test_result}}</div>
+      {% endif %}
+      <div class="form-example">
+        <label for="">Résultat final
+        </label>
+      </div>
+    </form>
+
+    <main>
+      <div class="question">
+        <div class="question-statement"></div>
+        <div class="question-answers">
+        </div>
+        <div class="question-footer">
+          <button onclick="function(){let elmt = document.getElementById('overlay'); elm.add }">Valider</button>
+        </div>
+      </div>
+    </main>
+
+     <div class="popup invisible">
+      <div class="popup_content">
+        <h2>Vos résultats ont été enrgistrer ...
+        retour à l'accueil</h2>
+        <div class="content">
+          Vous pouvez retourver votre classement parmis les établissements de l'île dans la partie ....
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
