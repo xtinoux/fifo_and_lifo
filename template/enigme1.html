@@ -3,50 +3,58 @@
   <head>
     <title>Enigme 1</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Highlight mise en forme du code  -->
+    <link rel="stylesheet" href="/static/assets/highlight/styles/monokai-sublime.css">
+    <script src="/static/assets/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
-    <link rel="stylesheet" href="quiz.css">
-    <style>
-      html,body{
-        margin: 0;
-        padding: 0;
-      }
-      .invisible{
-        display: none;
-      }
-
-      .visible{
-        display: block
-      }
-      
-      .popup{
-        background: rgba(0,0,0,0.4);
-        z-index:100;
-        height: 100vh;
-        width: 100vw;
-        position:absolute;
-        top:0;
-      }
-
-      .popup_content{
-        background-color: white;
-        width: 50%;
-        margin-left: 25%;
-        margin-top: 10%;
-        min-height: 500px;
-      }
-    </style>
   </head>
+
   <body>
     <noscript>
       <strong>Attention cette page ne fonctionnera pas correctement sans JavaScript activé. Merci de l'activer pour pouvoir continuer.</strong>
     </noscript>
 
+  
     <header>
       <h1>Enigme 1</h1>
     </header>
 
+<pre>
+  <code class="python">
+def mystere(parametre):
+    """
+    Fonction mystèrieuse qui prend un parametre et renvoie
+    """
+    if len(parametre) == 6:
+      return parametre
+    elif len(paramete) > 6:
+      return parametre[-1]
+    return None
+</code>
+</pre>
+
+
+<pre>  
+<code contenteditable="true" class="html" id="codearea_html" onkeypress="updateHTML()">
+<doctype HTML>
+  <html>
+    <head>
+      <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+
+
+    </body>
+</html>
+</code>
+</pre>
+
  <div>
-   Il faut retrouver quel(s) parametre(s) pour obtenir ...comme résultat
+   Il faut retrouver quel(s) paramètre(s) pour obtenir ...comme résultat
  </div>
 
     <form class="form-example" method="POST">
@@ -56,7 +64,9 @@
         <input type="text" name="test" id="test">
       </div>
 
- 
+<div id="resultarea_html">
+  
+</div>
 
       <div class="form-example">
         <input type="submit" value="Effectuer le test">
@@ -92,5 +102,16 @@
         </div>
       </div>
     </div>
+<script>
+  function updateHTML(){
+    console.log("Ecriture");
+  let codeArea = document.getElementById("codearea_html");
+  let resultArea = document.getElementById("resultarea_html");
+  let content = codeArea.innerHTML;
+  console.log(content);
+  resultArea.innerText = content; 
+ }
+</script>
   </body>
+
 </html>
