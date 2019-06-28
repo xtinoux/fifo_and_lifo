@@ -12,6 +12,12 @@ def hello_world():
     """
     return render_template("index.html")
 
+@app.route('/bonjour')
+def bonjour():
+    equipe = ['denis', 'alan', 'joris', 'eric', 'etienne']
+    return render_template('/bonjour.html', equipe=equipe)
+
+
 @app.route('/login')
 def login():
     """
