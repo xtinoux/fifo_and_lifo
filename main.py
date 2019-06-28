@@ -93,5 +93,11 @@ def Welcome_Karibou():
     liste = ["Joris_lapuissance", "Denis_jeunepapa", "Eric_absent", "Etienne_monsieurréférence", "Alan_maispourquoi"]
     return render_template('/ALAN.html', equipe = liste)
 
+@app.route('/testdesignprojet')
+def testdesignprojet():
+    return render_template('testdesignprojet.html')
+
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080, debug=True)
