@@ -31,12 +31,10 @@ def login():
 def enigme1():
     """
     Gestion de la première enigme
-
     """
     def test(*args):
         """
         Effecute les tests de l'enigme
-
         """
         return "Résultat du test"
 
@@ -56,16 +54,16 @@ def enigme1():
     test_result = ""
     return render_template("enigme1.html", test_result=test_result)
 
+
 @app.route('/enigme2', methods=["GET", "POST"])
 def enigme2():
     """
 
     """
-
-
     def test():
         "effecute les tests de l'enigme"
         pass
+    return render_template("enigme2.html")
 
 
 @app.route('/enigme3')

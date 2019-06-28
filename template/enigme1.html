@@ -115,8 +115,12 @@ def mystere(parametre):
 
 <script>
 testResult = "{{test_result}}" ;
+let popup = document.getElementById("popup");
+popup.addEventListener("click", function(evt){
+  popup.classList.remove("visible");
+  popup.classList.add("invisible");
+}); 
 if(testResult!=""){
-    let popup = document.getElementById("popup");
     popup.classList.remove("invisible");
     popup.classList.add("visible");
 }
