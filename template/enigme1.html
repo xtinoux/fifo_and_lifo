@@ -93,7 +93,7 @@ def mystere(parametre):
       </div>
     </main>
 
-     <div class="popup invisible">
+     <div id="popup" class="popup invisible">
       <div class="popup_content">
         <h2>Vos résultats ont été enrgistrer ...
         retour à l'accueil</h2>
@@ -105,13 +105,22 @@ def mystere(parametre):
 <script>
   function updateHTML(){
     console.log("Ecriture");
-  let codeArea = document.getElementById("codearea_html");
-  let resultArea = document.getElementById("resultarea_html");
-  let content = codeArea.innerHTML;
-  console.log(content);
-  resultArea.innerText = content; 
+        let codeArea = document.getElementById("codearea_html");
+        let resultArea = document.getElementById("resultarea_html");
+        let content = codeArea.innerHTML;
+        console.log(content);
+        resultArea.innerText = content; 
  }
 </script>
+
+<script>
+testResult = "{{test_result}}" ;
+if(testResult!=""){
+    let popup = document.getElementById("popup");
+    popup.classList.remove("invisible");
+    popup.classList.add("visible");
+}
+  </script>
   </body>
 
 </html>

@@ -54,7 +54,7 @@ def enigme1():
     		return render_template("enigme1.html", test_result=test_result)
 
     test_result = ""
-    return render_template("enigme1.html",test_result=test_result)
+    return render_template("enigme1.html", test_result=test_result)
 
 @app.route('/enigme2', methods=["GET", "POST"])
 def enigme2():
