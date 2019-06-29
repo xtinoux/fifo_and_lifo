@@ -36,7 +36,8 @@ def enigme1():
         """
         Effecute les tests de l'enigme
         """
-        return "Résultat du test"
+
+        return f"Résultat du test <br>  avec la fonction de tet qui ne sert à rien <br> et les parametres <br> {args}"
 
     if request.method == 'POST':
     	reponse = request.form.get("reponse")
@@ -44,11 +45,11 @@ def enigme1():
     	
     	if reponse:
     		logging.info('Enregistrement de la réponse dans base de donnée')
-    		# update_db('enigme1','reponse')
+    		test_result = "Reponse enregistée"
+    		return render_template("enigme1.html", test_result=test_result)
     	else:
     		logging.info('On effectue un test')
     		test_result = test(test_value)
-    		print(test_result)
     		return render_template("enigme1.html", test_result=test_result)
 
     test_result = ""

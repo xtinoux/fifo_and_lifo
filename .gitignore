@@ -1,1 +1,7 @@
 __pycache__
+_minted-UtilisationFlask
+*.aux
+*latexmk
+*fls
+*log
+*synctex.gz

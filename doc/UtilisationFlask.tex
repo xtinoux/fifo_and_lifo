@@ -1,0 +1,271 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{dirtree}
+\usepackage{xcolor}
+\usepackage{minted}
+\usemintedstyle{monokai}
+\definecolor{bg}{HTML}{282828}
+\definecolor{bghtml}{HTML}{ADADAD}
+\definecolor{Text}{HTML}{F8F8F2}
+\AtBeginEnvironment{minted}{\color{Text}}
+
+\begin{document}
+
+
+\section{Architecture du projet}
+
+\dirtree{%
+.1 fifo\_and\_lifo.
+   .2 app/.\DTcomment{Dossier contenant les modules tiers}.
+   .2 doc/.
+        .3 UtilisationFlask \DTcomment{Ce document}.
+   .2 static/.
+        .3 assets/ \DTcomment{Dossier contenant les fichiers tiers}.
+        .3 css/ \DTcomment{Dossier des fichiers CSS du projet}.
+        .3 db/ \DTcomment{Dossier contenant la(es) base(s) de données}.
+        .3 images/. 
+        .3 pdfs/.
+        .3 videos/.
+   .2 template/\DTcomment{Dossier contenant les fichiers HTML du projet}.
+   .2 main.py.\DTcomment{Programme principal}.
+   .2 README.md.
+   .2 fifoandlifo.ini\DTcomment{Fichier de configuration uWSGI}.
+}
+
+\newpage
+
+\section{Utilisation de Flask}
+
+\subsection{Code minimal fonctionnel d'une application}
+ %  A placer en entête
+
+
+\begin{minted}[bgcolor=bg]{python}
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+\end{minted}
+
+
+
+\subsection{Créer et afficher une page HTML}
+
+\subsubsection{Code HTML}
+  Les fichiers statiques doivent être déposé dans le dossier static
+
+Ainsi pour créer une page \texttt{bonjour.html}, qui contient l'image \texttt{bonjour.html} placée dans \texttt{static/images}
+
+ %  A placer en entête
+
+ %\usepackage{minted}
+ %\usemintedstyle{monokai}
+ %\definecolor{bg}{HTML}{282828}
+ %\definecolor{Text}{HTML}{F8F8F2}
+ %\AtBeginEnvironment{minted}{\color{Text}}
+
+
+\begin{minted}[bgcolor=bghtml]{HTML}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bonjour</title> 
+  </head>
+  <body style="background-image: url('/static/images/bonjour.jpg');background-size: cover;">
+    
+<h1>Bonjour l'équipe</h1>
+  </body>
+</html>
+\end{minted}
+
+
+ %  A placer en entête
+
+ %\usepackage{minted}
+ %\usemintedstyle{monokai}
+ %\definecolor{bg}{HTML}{282828}
+ %\definecolor{Text}{HTML}{F8F8F2}
+ %\AtBeginEnvironment{minted}{\color{Text}}
+
+\subsubsection{Attribuer une fonction Python à une URL}
+
+
+
+
+
+
+
+Maintenant, il faut que le navigateur puisse avoir accès à cette page. 
+
+\par 
+\medskip
+On lie donc cette page HTML à une fonction python puis on lie la fonction à l'URL souhaitée. \par 
+\texttt{return render\_template('/template\_de\_la\_page')}
+
+\par 
+\medskip
+
+
+Pour lier la fonction à l'URL, on utilise un décorateur. \par 
+\texttt{app.rout('/url')}
+
+\begin{minted}[bgcolor=bg]{python}
+ @app.route('/bonjour')
+ def bonjour():
+  return render_template('/bonjour.html')
+\end{minted}
+
+\begin{minted}[bgcolor=bg]{python}
+@app.route('/bonjour')
+def fct_bonjour():
+  return render_template('bonjour.html') 
+
+\end{minted}
+
+
+\subsection{Communication Python ->  HTML}
+\begin{enumerate}
+  \item On peut utiliser des variables Python dans le code en les encadrant par des doubles accolades $\{\{  ma variable  \}\}$.
+
+
+
+  \item On peut utiliser des boucles et des instrtuctions conditionnelles en les encadrant par $\lbrace\%  mon instruction  \%\rbrace$.
+\end{enumerate}
+
+\begin{multicols}2
+
+Dans le fichier \texttt{main.py}
+
+\begin{minted}[bgcolor=bg]{python}
+@app.route('/bonjour')
+def bonjour():
+    equipe = ['denis', 'alan', 'joris', 'eric', 'etienne']
+    return render_template('/bonjour.html',
+      equipe=equipe)
+\end{minted}
+
+\columnbreak
+
+
+Dans le fichier bonjour.html
+
+\begin{minted}[bgcolor=bghtml]{html}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bonjour</title> 
+  </head>
+  <body style="background-image: url('/static/images/bonjour.jpg');
+  background-size: cover;">
+    
+<h1>Bonjour l'équipe</h1>
+
+<ul>
+{% for nom in equipe %}
+  <li>{{nom}}</li>
+{% endfor %}
+</ul>
+
+  </body>
+</html>
+\end{minted}
+
+\end{multicols}
+
+
+ \section{Communication HTML -> Python}
+ 
+
+Un des moyens de communication d'une page HTML vers  le serveur est de passer par des formulaires.
+
+On utilisera la methode \texttt{POST} pour faire facilement la distinction entre la demande du formulaire et l'envoi de la réponse. 
+
+\textbf{TP 1}
+
+Dans le fichier que l'on nommera \texttt{form.html}, créer un formulaire HTML utilisant la méthode POST, ayant aucune action et  demandant à l'utilisateur d'entrer son nom.
+
+\par 
+
+Note : \par 
+La balise form aura donc : 
+\begin{itemize}
+  \item Un attribut \texttt{method} dont la valeur est \texttt{POST}
+  \item Un attribut \texttt{action} dont la valeur est \texttt{""}
+\end{itemize}
+
+Exemple : Dans le fichier \texttt{form.html}
+
+\begin{minted}[bgcolor=bghtml]{html}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bonjour</title> 
+  </head>
+  <body>
+    
+<h1>Un splendide formulaire</h1>
+
+<form method="POST" action="">
+  <input type=text name="nom">
+  <input type="submit" value="Valider"
+</form>
+
+  </body>
+</html>
+\end{minted}
+
+
+On a un splendide formulaire, maintenant il faut le faire traiter par le serveur.
+
+\par \vspace{5mm}
+
+Pour differencier les differentes méthodes on utilise la methode request, il faut donc verifier qu'elle soit bien importée au départ.
+
+
+\begin{minted}[bgcolor=bg]{python}
+from flask import Flask, request
+\end{minted}
+
+Ensuite comme d'habitude, on affecte notre url à la fonction souhaitées.
+
+\begin{minted}[bgcolor=bg]{python}
+@app.route('/formulaire/')
+def formulaire():
+  """ici on traite le formulaire"""
+  return render_template("form.html")
+\end{minted}
+
+
+Attention, on doit prevenir notre serveur que sur cette url, il peut recevoir aussi des requetes "POST", on ajoute donc à la route la methode POST
+
+
+\begin{minted}[bgcolor=bg]{python}
+@app.route('/formulaire/', methods=["GET", "POST"])
+def formulaire():
+  """ici on traite le formulaire"""
+  return render_template("form.html")
+\end{minted}
+
+
+Il ne reste plus qu'à récupérer les valeurs passé par le formulaire : 
+
+\begin{minted}[bgcolor=bg]{python}
+@app.route('/formulaire/', methods=["GET", "POST"])
+def formulaire():
+  """ici on traite le formulaire"""
+  if request.method == 'POST':
+      nom = request.form.get("reponse")
+      print(nom) # On affiche le résultat dans la console
+      return nom # On affiche aussi le résultat dans une page WEB
+  return render_template("form.html")
+\end{minted}
+
+0269 61 92 05
+
+
+
+\end{document}
