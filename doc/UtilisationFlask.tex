@@ -3,11 +3,13 @@
 \usepackage{dirtree}
 \usepackage{xcolor}
 \usepackage{minted}
+\usepackage{multicol}
 \usemintedstyle{monokai}
 \definecolor{bg}{HTML}{282828}
 \definecolor{bghtml}{HTML}{ADADAD}
 \definecolor{Text}{HTML}{F8F8F2}
 \AtBeginEnvironment{minted}{\color{Text}}
+
 
 \begin{document}
 
@@ -75,7 +77,9 @@ Ainsi pour créer une page \texttt{bonjour.html}, qui contient l'image \texttt{b
     <meta charset="utf-8">
     <title>Bonjour</title> 
   </head>
-  <body style="background-image: url('/static/images/bonjour.jpg');background-size: cover;">
+  <body style="
+    background-image: url('/static/images/bonjour.jpg');
+    background-size: cover;">
     
 <h1>Bonjour l'équipe</h1>
   </body>
@@ -127,7 +131,7 @@ def fct_bonjour():
 \end{minted}
 
 
-\subsection{Communication Python ->  HTML}
+\section{Communication Python ->  HTML}
 \begin{enumerate}
   \item On peut utiliser des variables Python dans le code en les encadrant par des doubles accolades $\{\{  ma variable  \}\}$.
 
@@ -143,15 +147,20 @@ Dans le fichier \texttt{main.py}
 \begin{minted}[bgcolor=bg]{python}
 @app.route('/bonjour')
 def bonjour():
-    equipe = ['denis', 'alan', 'joris', 'eric', 'etienne']
-    return render_template('/bonjour.html',
+    equipe = ['denis',\
+     'alan',\
+     'joris',\
+     'eric',\
+     'etienne']
+    return render_template(
+      '/bonjour.html',
       equipe=equipe)
 \end{minted}
 
 \columnbreak
 
 
-Dans le fichier bonjour.html
+Dans le fichier \texttt{bonjour.html}
 
 \begin{minted}[bgcolor=bghtml]{html}
 <html>
@@ -159,17 +168,16 @@ Dans le fichier bonjour.html
     <meta charset="utf-8">
     <title>Bonjour</title> 
   </head>
-  <body style="background-image: url('/static/images/bonjour.jpg');
+  <body style="
+  background-image: url('/static/images/bonjour.jpg');
   background-size: cover;">
     
 <h1>Bonjour l'équipe</h1>
-
 <ul>
 {% for nom in equipe %}
   <li>{{nom}}</li>
 {% endfor %}
 </ul>
-
   </body>
 </html>
 \end{minted}
@@ -184,7 +192,11 @@ Un des moyens de communication d'une page HTML vers  le serveur est de passer pa
 
 On utilisera la methode \texttt{POST} pour faire facilement la distinction entre la demande du formulaire et l'envoi de la réponse. 
 
-\textbf{TP 1}
+\bigskip
+
+\textbf{TP : création d'un formulaire}
+
+\medskip
 
 Dans le fichier que l'on nommera \texttt{form.html}, créer un formulaire HTML utilisant la méthode POST, ayant aucune action et  demandant à l'utilisateur d'entrer son nom.
 
@@ -211,7 +223,7 @@ Exemple : Dans le fichier \texttt{form.html}
 
 <form method="POST" action="">
   <input type=text name="nom">
-  <input type="submit" value="Valider"
+  <input type="submit" value="Valider">
 </form>
 
   </body>
@@ -223,12 +235,18 @@ On a un splendide formulaire, maintenant il faut le faire traiter par le serveur
 
 \par \vspace{5mm}
 
-Pour differencier les differentes méthodes on utilise la methode request, il faut donc verifier qu'elle soit bien importée au départ.
+Pour differencier les méthodes \texttt{GET} et \texttt{POST} on utilise la methode \texttt{request} de la bibliothèque \texttt{flask}. \par 
+
+\medskip
+
+Il faut donc verifier qu'elle soit bien importée au départ.
 
 
 \begin{minted}[bgcolor=bg]{python}
 from flask import Flask, request
 \end{minted}
+
+\bigskip
 
 Ensuite comme d'habitude, on affecte notre url à la fonction souhaitées.
 
@@ -251,7 +269,7 @@ def formulaire():
 \end{minted}
 
 
-Il ne reste plus qu'à récupérer les valeurs passé par le formulaire : 
+Il ne reste plus qu'à récupérer les valeurs passées par le formulaire et les traiter : 
 
 \begin{minted}[bgcolor=bg]{python}
 @app.route('/formulaire/', methods=["GET", "POST"])
@@ -260,7 +278,7 @@ def formulaire():
   if request.method == 'POST':
       nom = request.form.get("reponse")
       print(nom) # On affiche le résultat dans la console
-      return nom # On affiche aussi le résultat dans une page WEB
+      return nom # On affiche le résultat dans une page WEB
   return render_template("form.html")
 \end{minted}
 
