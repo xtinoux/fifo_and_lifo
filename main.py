@@ -2,6 +2,11 @@ from flask import Flask, render_template, request
 from app.db_utils import recuperation_noms_etablissements
 import logging
 
+def reponse_db(*args):
+	pass
+
+id_classe = 1
+
 app = Flask(__name__, template_folder='template', static_folder='static')
 
 @app.route('/')
@@ -36,21 +41,27 @@ def enigme1():
         """
         Effecute les tests de l'enigme
         """
-
-        return f"Résultat du test <br>  avec la fonction de tet qui ne sert à rien <br> et les parametres <br> {args}"
+        try:
+        	resultat = 2 * args[0]
+        except:
+        	resultat = "La valeur passer en parametre est incorrect"
+        return resultat
 
     if request.method == 'POST':
     	reponse = request.form.get("reponse")
     	test_value = request.form.get("test")
+    	reponse_values = request.form.get("reponse")
     	
     	if reponse:
     		logging.info('Enregistrement de la réponse dans base de donnée')
     		test_result = "Reponse enregistée"
-    		return render_template("enigme1.html", test_result=test_result)
+    		reponse_db(id_classe, reponse_values)
+    		return render_template("enigme1.html", test_result="Résultat enregistée", final=True)
+    	
     	else:
     		logging.info('On effectue un test')
     		test_result = test(test_value)
-    		return render_template("enigme1.html", test_result=test_result)
+    		return render_template("enigme1.html", test_result=test_result, final=False)
 
     test_result = ""
     return render_template("enigme1.html", test_result=test_result)
