@@ -73,3 +73,27 @@
     .center{
     text-align: center;
     }
+
+    .enigme_content  {
+    padding: 12px;
+    text-align: center;
+    }
+
+    .btn_validation button {
+    cursor: pointer;
+    height: 48px;
+    padding: 0 32px;
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #1abc9c;
+    border: 0;
+    border-bottom: 2px solid #12ab8d;
+    box-shadow: inset 0 -2px #12ab8d;
+    }
+    .enigme_content .center-footer button:active {
+    top: 1px;
+    outline: none;
+    box-shadow: none;
+    }
