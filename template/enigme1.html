@@ -51,7 +51,7 @@ def mystere(parametre):
           <input type="submit" value="Effectuer le test">
         </div>
         {% if test_result %}
-          <div class="resultat_test">{{test_result}}</div>
+          <div class="resultat_test" style=" background-color: rgba(0,0,0,0.4); min-height: 100px; max-width: 70%;margin: auto;">{{test_result}}</div>
         {% endif %}
       </form>
     </div>
@@ -64,6 +64,7 @@ def mystere(parametre):
           
           <input type="text" name="reponse" id="reponse" placeholder="Réponse définitive">
         </div>
+        <br>
         <div class="center btn_validation">
         	<button type="submit" value="">Valider votre réponse</button>
         </div>
@@ -97,13 +98,15 @@ def mystere(parametre):
       }
       </script> -->
       <script>
-      testResult = "{{test_result}}" ;
+      let testResult = "{{test_result}}";
+      let final = "{{final}}";
+      console.log(final);
       let popup = document.getElementById("popup");
       popup.addEventListener("click", function(evt){
       popup.classList.remove("visible");
       popup.classList.add("invisible");
       });
-      if(testResult!=""){
+      if(final == "True"  ){
       popup.classList.remove("invisible");
       popup.classList.add("visible");
       }
