@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from app.db_utils import recuperation_noms_etablissements
+from app.COULEURS import *
 import logging
 
 def reponse_db(*args):
@@ -107,7 +108,9 @@ def Welcome_Karibou():
 def testdesignprojet():
     return render_template('testdesignprojet.html')
 
-
+@app.route('/test')
+def test():
+	return render_template('carousel.html', couleurs = VIOLETS, couleurs_d = VIOLETS_D)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080, debug=True)
