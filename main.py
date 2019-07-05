@@ -65,7 +65,7 @@ def enigme1():
     		return render_template("enigme1.html", test_result=test_result, final=False)
 
     test_result = ""
-    return render_template("enigme1.html", test_result=test_result)
+    return render_template("enigme1.html", test_result=test_result, couleurs_d=VIOLETS_D)
 
 
 @app.route('/enigme2', methods=["GET", "POST"])
