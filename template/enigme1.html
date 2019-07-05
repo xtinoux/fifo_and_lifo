@@ -46,13 +46,21 @@ def mystere(parametre):
         <div class="form-example">
           
           <input type="text" name="test" id="test" placeholder="Valeur à tester">
+           <img style="background-color: black ; vertical-align: top"
+        src="../static/images/PersoEnigme1.svg"
+        alt="On a perdu Fifo"
+        height="100px"
+        width="100px"
+        />  
         </div>
+
         <div class="form-example">
           <input type="submit" value="Effectuer le test">
         </div>
         {% if test_result %}
           <div class="resultat_test" style=" background-color: rgba(0,0,0,0.4); min-height: 100px; max-width: 70%;margin: auto;">{{test_result}}</div>
         {% endif %}
+
       </form>
     </div>
 
@@ -68,7 +76,7 @@ def mystere(parametre):
         <div class="center btn_validation">
         	<button type="submit" value="">Valider votre réponse</button>
         </div>
-          
+        
         <!-- 
         {% if test_result %}
           <div class="resultat_test">{{test_result}}</div>
@@ -80,7 +88,7 @@ def mystere(parametre):
 
       <div id="popup" class="popup invisible">
         <div class="popup_content">
-          <h2>Vos résultats ont été enrgistrer ...
+          <h2>Vos résultats ont été enregistrés
           retour à l'accueil</h2>
           <div class="content">
             Vous pouvez retourver votre classement parmis les établissements de l'île dans la partie ....
