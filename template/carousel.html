@@ -3,29 +3,101 @@
 		<title>Choix des énigmes</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-		<script src="js/main.js" async></script>
-		<script src="/static/js/carousel.js"></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="/static/css/carousel.css" />
+		<script src="/static/js/carousel.js" async></script>
+		<style>
+			html, body{
+				margin: 0;
+				padding:0;
+			}
+			invisible{
+				display: none;
+			}
+			
+			visible{
+				display: block;
+			}
+		</style>
 	</head>
 	<body>
 		
-	 
+		
 		<div>
-			    <div class="background" style="z-index: -10; width: 100vw;height: 100%; margin:0;padding: 0; position: fixed;top:0;" >
-      {% include "mozaique.html" ignore missing %}
-    </div>  
-    		    <div class="background" style="z-index: -5; width: 100vw;height: 100%; margin:0;padding: 0; position: fixed;top:0;background: linear-gradient(to bottom, rgba(200,200,200,1),rgba(200,200,200,0.95) 55%, rgba(200,200,200,0.20) 100%);" >
-			<!-- Created with Inkscape (http://www.inkscape.org/) -->
-			<!--  <style>
-				svg {
-					transform:  skewX(30deg);
-				}
-			</style> -->
-			
+			<div class="background" style="z-index: -10; width: 100vw;height: 100%; margin:0;padding: 0; position: fixed;top:0;" >
+				{% set couleurs_d = TURQUOISES_D %}
+				{% include "mozaique.html" ignore missing %}
+				<div class='masque invisible'>
+					
+				</div>
 			</div>
-			<h2>Mosaique</h2>
-			<div >
+			<div class="background">
 			</div>
+			<div class="carousel" >
 				
- 		</div>
-	</body>
+				<div class="carousel_item">
+					{% set couleurs_d = VIOLETS_D %}
+					{% include "mozaique.html" ignore missing %}
+					
+				</div>
+				<div class="carousel_item" >
+					{% set couleurs_d = TURQUOISES_D %}
+					{% include "mozaique.html" ignore missing %}
+					
+				</div>
+				<div class="carousel_item" style="">
+					{% set couleurs_d = JAUNES_D %}
+					{% include "mozaique.html" ignore missing %}
+				</div>
+				<div class="carousel_focus visible">
+					{% set couleurs_d = TURQUOISES_D %}
+					{% include "mozaique.html" ignore missing %}
+					<div class="masque"> </div>
+				</div>
+				
+			</div>
+			<div class="content">
+				<h2>descriptif de la mission</h2>
+				<p>
+					<span>Mission 1</span> <br>
+					<span>Sequi et, facilis ea id corrupti explicabo suscipit dolorem doloribus eveniet asperiores tempora, natus eos nobis hic! Nam tenetur aut vitae fugit dicta! Numquam atque optio blanditiis illo doloribus alias?</span>
+				</p>
+			</div>
+			
+		</div>
+	</div>
+</div>
+</body>
+<!-- <script>
+	function gestionEvent(elmt){
+		elm.addEventListener(keypress){ () => {
+
+		}}
+	}
+</script> -->
+
+<script>
+	function toogle(elmt){
+		elmt.classList()
+		if in
+		elmt.style.removeClass()
+
+	}
+
+	let in_focus = 1
+	let aviaibles = ["1","3"]
+	let items = document.querySelectorAll(".carousel_item");
+	var counter = 1;
+	items.forEach( function(){
+		console.log(aviaibles);
+		let strCounter = counter.toString();
+		let strFocus = in_focus.toString();
+		counter ++;
+		if ( aviaibles.includes(strFocus)) {
+			console.log(counter)
+		}
+		else
+			{console.log("Pas disponible") }
+		
+		});
+</script>
 </html>

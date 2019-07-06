@@ -99,6 +99,8 @@ def admin():
     """
 
     """
+    pass 
+    
 @app.route('/WelcomeKaribou')
 def Welcome_Karibou():
     liste = ["Joris_lapuissance", "Denis_jeunepapa", "Eric_absent", "Etienne_monsieurréférence", "Alan_maispourquoi"]
@@ -110,7 +112,17 @@ def testdesignprojet():
 
 @app.route('/test')
 def test():
-	return render_template('carousel.html', couleurs = VIOLETS, couleurs_d = VIOLETS_D)
+	return render_template('carousel.html', couleurs = VIOLETS, couleurs_d = VIOLETS_D, VIOLETS_D= VIOLETS_D, JAUNES_D=JAUNES_D, TURQUOISES_D=TURQUOISES_D)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080, debug=True)
+
+
+# Test MOCK ->
+# 
+# function truc(){
+#     this.a = 5;
+# 	onclick((p, o) => {
+# 	   this.a = 6
+# 	});
+# }
