@@ -33,66 +33,49 @@ def login():
     liste_lycee =  recuperation_noms_etablissements()
     return render_template("login.html", ma_variable=liste_lycee)
 
-@app.route('/enigme1', methods=['GET', 'POST'])
-def enigme1():
+@app.route('/enigme/<int:nb_enigme>', methods=['GET', 'POST'])
+def enigme(nb_enigme=None):
     """
-    Gestion de la première enigme
+    Gestion des enigmes
     """
-    def test(*args):
-        """
-        Effecute les tests de l'enigme
-        """
-        try:
-        	resultat = 2 * args[0]
-        except:
-        	resultat = "La valeur passer en parametre est incorrect"
-        return resultat
 
-    if request.method == 'POST':
-    	reponse = request.form.get("reponse")
-    	test_value = request.form.get("test")
-    	reponse_values = request.form.get("reponse")
-    	
-    	if reponse:
-    		logging.info('Enregistrement de la réponse dans base de donnée')
-    		test_result = "Reponse enregistée"
-    		reponse_db(id_classe, reponse_values)
-    		return render_template("enigme1.html", test_result="Résultat enregistée", final=True)
-    	
-    	else:
-    		logging.info('On effectue un test')
-    		test_result = test(test_value)
-    		return render_template("enigme1.html", test_result=test_result, final=False)
+    if nb_enigme:
+	    def test(*args):
+	        """
+	        Effecute les tests de l'enigme
+	        
+			@param : liste de parametres
+			@return : texte à afficher
+	        """
+	        try:
+	        	resultat = 2 * args[0]
+	        except:
+	        	resultat = "La valeur passer en parametre est incorrect"
+	        return resultat
+
+	    if request.method == 'POST':
+	    	"""
+			Traitement des réponses aux formulaires
+	    	"""
+	    	reponse = request.form.get("reponse")
+	    	test_value = request.form.get("test")
+	    	reponse_values = request.form.get("reponse")
+	    	
+	    	if reponse:
+	    		logging.info('Enregistrement de la réponse dans base de donnée')
+	    		test_result = "Reponse enregistée"
+	    		reponse_db(id_classe, reponse_values)
+	    		return render_template(f"enigme{nb_enigme}.html", test_result="Résultat enregistée", final=True,  couleurs_d=VIOLETS_D)
+	    	
+	    	else:
+	    		logging.info('On effectue un test')
+	    		test_result = test(test_value)
+	    		return render_template(f"enigme{nb_enigme}.html", test_result=test_result, final=False,  couleurs_d=VIOLETS_D)
 
     test_result = ""
-    return render_template("enigme1.html", test_result=test_result, couleurs_d=VIOLETS_D)
+    return render_template(f"enigme{nb_enigme}.html", test_result=test_result, couleurs_d=VIOLETS_D)
 
-
-@app.route('/enigme2', methods=["GET", "POST"])
-def enigme2():
-    """
-
-    """
-    def test():
-        "effecute les tests de l'enigme"
-        pass
-    return render_template("enigme2.html")
-
-
-@app.route('/enigme3')
-def enigme3():
-    """
-
-    """
-    if request == "POST":
-        rep = request.form('final_rep') 
-        if rep:
-            update_db('enigme3', rep)
-        else : 
-            test = request.form('test')
-            resultat = fonction_test('enigme3',test)
-    pass
-
+ 
 
 @app.route('/admin')
 def admin():
