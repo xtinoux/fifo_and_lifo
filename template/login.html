@@ -4,38 +4,45 @@
     <title>LOGIN</title>
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="quiz.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/login.css">
+    
   </head>
-  <body>
+  <body background="/static/images/fond_login.gif">
     <noscript>
       <strong>Attention cette page ne fonctionnera pas correctement sans JavaScript activé. Merci de l'activer pour pouvoir continuer.</strong>
     </noscript>
-
     <header>
-      <h1>Votre Login</h1>
+      <h1 class="login-titre">IDENTIFICATION</h1>
     </header>
 
-    {%for lycee in ma_variable%}
-{{lycee}} <br> <!-- liste defilante select -->
-    {%endfor%}
+    <form>
+      <fieldset class="form-lycee">
+        <legend>1-Choisissez votre lycee</legend>
+          <div class="form-radio">
+            {%for lycee in ma_variable[0]%}
+              <input type="radio" id="{{lycee}}" name="lycee" value="lycee1" onclick="DisplayListeSection({{ma_variable}})">
+              <label for="{{lycee}}">{{lycee}}</label><br/>
+            {%endfor%}        
+          </div>
+      </fieldset>
 
-    <form class="form-example">
-      <div class="form-example">
-        <label for="name">Nom:
-        </label>
-        <input type="text" name="name" id="name" required>
-      </div>
-      <div class="form-example">
-        <label for="email">Mot de passe:
-        </label>
-        <input type="password" name="password" id="password" required>
-      </div>
-      <div class="form-example">
-        <input type="submit" value="Connexion">
-      </div>
+      <fieldset class="form-section">
+        <legend>2-Choisissez votre section</legend>
+          <div class="form-radio" id="formsection">
+            <div id="first-el"> </div> 
+          </div>
+      </fieldset>
+
+      <fieldset class="form-passwd" id="passwd" disabled>
+        <legend>3-Vous pouvez maintenant vous identifier</legend>
+          <label for="name">Votre mot de passe:</label>
+          <input type="password" name="name" id="name" required><br>
+          <input type="submit" value="Connexion">
+      </fieldset>
     </form>
 
-    <main>
+<!--     <main>
       <div class="question">
         <div class="question-statement"></div>
         <div class="question-answers">
@@ -51,8 +58,7 @@
         <h2>Quiz terminé</h2>
         <div class="content"></div>
       </div>
-    </div>
-
-    <script src="quiz.js"></script>
+    </div> -->
+  <script src="/static/script/login.js">  </script>
   </body>
 </html>
