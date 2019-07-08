@@ -20,15 +20,15 @@
       <fieldset class="form-lycee">
         <legend>1-Choisissez votre lycee</legend>
           <div class="form-radio">
-            {%for lycee in ma_variable[0]%}
-              <input type="radio" id="{{lycee}}" name="lycee" value="lycee1" onclick="DisplayListeSection({{ma_variable}})">
+            {%for lycee in ma_variable%}
+              <input type="radio" id="{{lycee}}" name="lycee" value="{{lycee}}" onclick="DisplayListeSection({{ma_variable}})">
               <label for="{{lycee}}">{{lycee}}</label><br/>
             {%endfor%}        
           </div>
       </fieldset>
 
       <fieldset class="form-section">
-        <legend>2-Choisissez votre section</legend>
+        <legend>2-Choisissez votre classe</legend>
           <div class="form-radio" id="formsection">
             <div id="first-el"> </div> 
           </div>

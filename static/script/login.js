@@ -1,10 +1,6 @@
 function DisplayListeSection(ListeLycee) {
-	// document.getElementById("demo").innerHTML = "ok";
 	lyceechosen = getSelectedLycee();
-	var ListeSection = new Array(ListeLycee[1][lyceechosen].length);
-	for (var i = ListeLycee[1][lyceechosen].length - 1; i >= 0; i--) {
-		ListeSection[i] = ListeLycee[1][lyceechosen][i];
-	};
+	ListeSection = ListeLycee[lyceechosen];
 	defRadioSection(ListeSection);
 }
 
@@ -12,7 +8,7 @@ function getSelectedLycee() {
 	var radios = document.getElementsByName("lycee");
 	for(var i = 0; i < radios.length; i++){
 		if(radios[i].checked) {
-			return i;
+			return radios[i].value;
 		}
 	}
 }
@@ -37,6 +33,8 @@ function defRadioSection (ListeSection) {
 	document.getElementById("formsection").insertBefore(radio,document.getElementById("label"+ListeSection[debut]));
 
 	for (var i = ListeSection.length-2; i >= 0; i--) {		
+		var saut = document.createElement("BR");
+		document.getElementById("formsection").insertBefore(saut,document.getElementById("radio"+ListeSection[i-1]));
 		var label = document.createElement("label");
 		label.setAttribute("for", ListeSection[i]);
 		label.setAttribute("id", "label"+ListeSection[i]);
