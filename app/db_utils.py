@@ -109,7 +109,7 @@ donne un dico avec la uid en clef et
 
 
 
-def idenfication(dico):
+def identification(dico):
     '''  dico_lycee_classe_mdp
     ou alors suite aux tergiversation de l'autre la 
     donne uid si identification ok chaine vide si False (identification erronée)
