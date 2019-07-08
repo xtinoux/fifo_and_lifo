@@ -48,9 +48,9 @@
       <h2>Test</h2>
       <form class="form-example" method="POST">
         <div class="form-example">
-          <div class="wrapper">
+          <div class="wrapper" id="wrapper">
             
-            <img class="fifo-face"
+            <img class="fifo-face" id="fifo-face"
             src="../static/images/PersoEnigme1.svg"
             alt="On a perdu Fifo"
             height="200px"
@@ -61,6 +61,15 @@
 
         </div>
         {% if test_result %}
+        <script>
+          window.onload = function(){
+            console.log("fdsfsfds");
+            window.scrollTo(0, 500);}
+          let fifo = document.getElementById("fifo-face");
+          let wrapper = document.getElementById("wrapper");
+          fifo.style.display = "none";
+          wrapper.style.minHeight = "150px";
+        </script>
         <div class="wrapper">
           
           <img style="float : left; vertical-align: bottom;"
