@@ -43,7 +43,7 @@ def login():
         print(password)
         print(lycee)
         print(section)
-        auth = identification({"password":password, "lycee":lycee, "section":section})
+        auth = identification({"password":password, "lycee":lycee, "classe":section})
         if auth:
             session["lycee"] = lycee
             session["section"] = section
