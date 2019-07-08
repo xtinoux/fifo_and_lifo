@@ -18,7 +18,6 @@ function getSelectedLycee() {
 }
 
 function defRadioSection (ListeSection) {
-	// var form = document.getElementById("formsection");
 	var debut = ListeSection.length-1;//ListeSection.length-1;
 	// document.getElementById("demo").innerHTML = ListeSection.length;
 	var label = document.createElement("label");
