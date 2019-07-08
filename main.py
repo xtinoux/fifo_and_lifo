@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect,url_for, jsonify
+from flask import Flask, render_template, request, flash, redirect, url_for, jsonify, session
 from app.db_utils import *
 from app.COULEURS import *
 import logging
@@ -39,14 +39,14 @@ def login():
     if request.method == "POST":
         password = request.form['password']
         lycee = request.form['lycee']
-        section = request.form['section']
-        print(password)
-        print(lycee)
-        print(section)
-        auth = identification({"password":password, "lycee":lycee, "classe":section})
+        classe = request.form['section'].replace("radio","")
+        print(f"password : {password}")
+        print(f"lycee : {lycee}")
+        print(f"classe : {classe}")
+        auth = identification({"password":password, "lycee":lycee, "classe":classe})
         if auth:
             session["lycee"] = lycee
-            session["section"] = section
+            session["classe"] = classe
             session["uid"] = auth
             flash('You were successfully logged in')
             return redirect(url_for('enigme', nb_enigme=None))

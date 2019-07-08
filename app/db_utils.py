@@ -77,9 +77,10 @@ def reccup_identifiant(etablissement,classe):
     cursor.execute("""SELECT identifiant,etablissement,classe FROM classes WHERE etablissement = ? AND classe = ?""", (etablissement,classe,))
     liste_etab = cursor.fetchone()
     conn.close()
-    
-    return(liste_etab[0])
-
+    try:
+        return(liste_etab[0])
+    except:
+        return("Echec de la récupération de l'identifiant classe")
 
 
 def insertion_reponse_db(identifiant,num_enigme,reponse):
@@ -190,11 +191,11 @@ def enigmes_disponibles(identifiant):
 
 if __name__ == '__main__':
     chemin = '../static/db/fifoandlifo.db'
-    dico = { 'lycee': 'Lycée de Sada' , 'classe': 'NSI01' , 'password': '1234'}
+    dico = { 'lycee': 'Lycée de Sada' , 'classe': 'NSI01' , 'password': '12034'}
     #dico2 = { 'lycee': 'Lycée de Sad' , 'classe': 'NSI01' , 'password': '1234'}
 
     print(recuperation_etab_et_classes())
-    print(idenfication(dico))
+    print(identification(dico))
     # print(recuperation_etab_et_classes())
     # print(recuperation_noms_etablissements())
     # print(reccup_identifiant('Lycée de Sada','NSI02'))
