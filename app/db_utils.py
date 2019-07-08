@@ -77,7 +77,7 @@ def reccup_identifiant(etablissement,classe):
     cursor.execute("""SELECT identifiant,etablissement,classe FROM classes WHERE etablissement = ? AND classe = ?""", (etablissement,classe,))
     liste_etab = cursor.fetchone()
     conn.close()
-    print(liste_etab)
+    
     return(liste_etab[0])
 
 
@@ -114,12 +114,11 @@ def idenfication(dico):
     ou alors suite aux tergiversation de l'autre la 
     donne uid si identification ok chaine vide si False (identification erronée)
     '''
-    print(dico['lycee'])
-    print(dico['classe'])
+    
     uid = reccup_identifiant(dico['lycee'],dico['classe'])
     # uid = reccup_identifiant('Lycée de Sada','NSI01')
 #
-    print(uid)
+    
     return identification2(uid,dico['password'])
     
 
@@ -133,9 +132,7 @@ def identification2(identifiant,mdp):
     cursor.execute("""SELECT identifiant,mdp FROM classes WHERE identifiant = ?""", (identifiant,))
     liste_etab = cursor.fetchone()    # contient tous les établissements.
     conn.close()
-    print(liste_etab)
-    #print((liste_etab[1])
-    print(mdp)
+    
     if mdp == str(liste_etab[1]):
         return {"identifiant": identifiant}
     else:
@@ -158,7 +155,6 @@ def raz_reponses_db():
             cursor.execute("""UPDATE classes SET enigme02_effectuee = ? WHERE identifiant = ?""", (0,i))
             cursor.execute("""UPDATE classes SET enigme01_effectuee = ? WHERE identifiant = ?""", (0,i))
     conn.commit()
-  
     conn.close()
     
 def enigmes_disponibles(identifiant):
