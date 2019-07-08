@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, redirect,url_for, jsonify
-from app.db_utils import recuperation_noms_etablissements, recuperation_etab_et_classes
+from app.db_utils import *
 from app.COULEURS import *
 import logging
 
@@ -39,11 +39,14 @@ def login():
     if request.method == "POST":
         password = request.form['password']
         lycee = request.form['lycee']
-        classe = request.form['classe']
-        auth = indentification({"password":password, "lycee":lycee, "classe":classe})
+        section = request.form['section']
+        print(password)
+        print(lycee)
+        print(section)
+        auth = identification({"password":password, "lycee":lycee, "section":section})
         if auth:
             session["lycee"] = lycee
-            session["classe"] = classe
+            session["section"] = section
             session["uid"] = auth
             flash('You were successfully logged in')
             return redirect(url_for('enigme', nb_enigme=None))
