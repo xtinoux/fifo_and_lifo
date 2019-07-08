@@ -51,16 +51,26 @@
 
       <div class="enigme_content center">
         <h2>Test</h2>
-        <form class="form-example" method="POST">
+        <form class="form-example" method="POST"> 
+
           <div class="form-example">
-            
+          	<img style="float : right; vertical-align: top;background-color: black;"
+            src="../static/images/PersoEnigme1.svg"
+            alt="On a perdu Fifo"
+            height="200px"
+            width="200px"/>
             <input type="text" name="test" id="test" placeholder="Valeur à tester">
-          </div>
+          </div>         
           <div class="form-example">
             <input type="submit" value="Effectuer le test">
           </div>
           {% if test_result %}
-            <div class="resultat_test" style=" background-color: rgba(0,0,0,0.4); min-height: 100px; max-width: 70%;margin: auto;">{{test_result}}</div>
+          <img style="float : left; vertical-align: top;"
+            src="../static/images/PersoEnigme1(2).svg"
+            alt="On a perdu Fifo"
+            height="200px"
+            width="200px"/>
+            <div class="resultat_test" style=" background-color: rgba(0,0,0,0.4); min-height: 100px; max-width: 70%;margin: auto;">{{test_result}}</div>           
           {% endif %}
         </form>
       </div>
