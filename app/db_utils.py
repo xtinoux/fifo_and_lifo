@@ -1,16 +1,19 @@
 
-
-
 import sqlite3
 from random import randint
 
+chemin = 'static/db/fifoandlifo.db'
 
 
 def recuperation_noms_etablissements():
     ''' pas de parametre
     retourne la liste des établissements sans répétition d'élémént
+    exemple utilisation
+    print(recuperation_noms_etablissements())
+    donne ['Lycée du Nord (Acoua)', 'Lycée de Sada', 'Lycée de Kahani']
+    meme si il y a deux classes au lyvée de sada
     '''    
-    conn = sqlite3.connect('../static/db/fifoandlifo.db')
+    conn = sqlite3.connect(chemin)
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
     cursor.execute("""SELECT etablissement FROM classes""")
     liste_etab = cursor.fetchall()
@@ -28,12 +31,16 @@ def recuperation_noms_etablissements():
 def recuperation_etab_et_classes():
     ''' 
     Sous forme de dictionnaire, donne les etablissements puis toutes les classes de ces etablissements
-    la clef est le nom de l etablissement et la donnee correspondante est une liste avec les classes NSI de
+    la clef du dictionnaire est le nom de l etablissement et la donnee correspondante est une liste avec les classes NSI de
     l'etablissemment 
     pourra etre utilisé pour les menus deroulants
+    exemple
+    print(recuperation_etab_et_classes())
+    donne
+    {'Lycée de Sada': ['NSI01', 'NSI02', 'NSI03'], 'Lycée de Kahani': ['NSI01', 'NSI02'], 'Lycée du Nord (Acoua)': ['NSI01']}
     '''    
     
-    conn = sqlite3.connect('../static/db/fifoandlifo.db')
+    conn = sqlite3.connect(chemin)
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
     cursor.execute("""SELECT etablissement,classe FROM classes""")
     liste_etab = cursor.fetchall()    # contient tous les établissements.
@@ -49,14 +56,28 @@ def recuperation_etab_et_classes():
     return dico_etab
 
 
-
-
 def lecture_de_la_base():
-    '''  '''
-    conn = sqlite3.connect('../static/db/fifoandlifo.db')
+    ''' fonction qui donne toute la base de donnees
+    a utiliser avec parcimonie si la base est immense
+    '''
+    conn = sqlite3.connect(chemin)
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
-    print(cursor)
+    cursor.execute("""SELECT * FROM classes""")
+    liste_etab = cursor.fetchall()
     conn.close()
+    return liste_etab
+
+
+def reccup_identifiant(etablissement,classe):
+    ''' fonction inetrne non utilisée par les utilisateurs
+    donne l'identifiant etant donné un etablissement et une classe dans cet etablissement
+    '''
+    conn = sqlite3.connect(chemin)
+    cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
+    cursor.execute("""SELECT identifiant,etablissement,classe FROM classes WHERE etablissement = ? AND classe = ?""", (etablissement,classe,))
+    liste_etab = cursor.fetchone()
+    conn.close()
+    return(liste_etab[0])
 
 
 
@@ -65,7 +86,7 @@ def insertion_reponse_db(identifiant,num_enigme,reponse):
     insere la reponse dans la base de donnée pour l'enigme numero num_enigme
     de plus valide la reponse par un True dans la base pour indiquer que l'enigme a ete effectuee
     '''
-    conn = sqlite3.connect('../static/db/fifoandlifo.db')
+    conn = sqlite3.connect(chemin)
     cursor = conn.cursor()      #  definie un curseur(pointeur) qui parcours la base
    
     if num_enigme == 1:
@@ -87,7 +108,7 @@ def identification(identifiant,mdp):
     ''' repond false si le mdp affilié a l'identifiant est correct
     '''
     
-    conn = sqlite3.connect('../static/db/fifoandlifo.db')
+    conn = sqlite3.connect(chemin)
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
     cursor.execute("""SELECT identifiant,mdp FROM classes WHERE identifiant = ?""", (identifiant,))
     liste_etab = cursor.fetchone()    # contient tous les établissements.
@@ -106,7 +127,7 @@ def raz_reponses_db():
     ''' RAZ de la base
     '''
     
-    conn = sqlite3.connect('../static/db/fifoandlifo.db')
+    conn = sqlite3.connect(chemin)
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
     for i in range (1,7):        
             
@@ -131,7 +152,7 @@ def enigmes_disponibles(identifiant):
     compteur = [False,False,False]   # pour l'instant il y trois enigmes non accessible
     valeur = 0
 
-    conn = sqlite3.connect('../static/db/fifoandlifo.db')
+    conn = sqlite3.connect(chemin)
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
     cursor.execute("""SELECT enigme01_effectuee FROM classes WHERE identifiant = ?""",(identifiant,))
     valeur  = cursor.fetchone()
@@ -156,12 +177,13 @@ def enigmes_disponibles(identifiant):
 
 
 if __name__ == '__main__':
-
-    print(identification(1,'1234'))
-    print(identification(1,'123'))
-    print(identification(2,'123'))
-    # print(recuperation_etab_et_classes())
-
+    chemin = '../static/db/fifoandlifo.db'
+    print(recuperation_etab_et_classes())
+    print(recuperation_noms_etablissements())
+    print(reccup_identifiant('Lycée de Sada','NSI02'))
+    print(reccup_identifiant('Lycée de Sada','NSI01'))
+    print(reccup_identifiant('Lycée de Sada','NSI03'))
+    print(reccup_identifiant('Lycée de Kahani','NSI01'))
 
     # print(enigmes_disponibles(4))
     # raz_reponses_db()
