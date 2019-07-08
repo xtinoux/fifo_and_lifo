@@ -80,7 +80,8 @@ def reccup_identifiant(etablissement,classe):
     try:
         return(liste_etab[0])
     except:
-        return("Echec de la récupération de l'identifiant classe")
+        print(f"ERREUR : Echec de la récupération de l'identifiant classe.\n Verifier le nom de l'établissement et de la classe \n Etablissement : {etablissement} \n Classe : {classe}")
+        raise TypeError(f"ERREUR : Echec de la récupération de l'identifiant classe \n \nEtablissement : {etablissement} \nClasse : {classe}")
 
 
 def insertion_reponse_db(identifiant,num_enigme,reponse):
@@ -129,11 +130,12 @@ def identification2(identifiant,mdp):
     cursor.execute("""SELECT identifiant,mdp FROM classes WHERE identifiant = ?""", (identifiant,))
     liste_etab = cursor.fetchone()    # contient tous les établissements.
     conn.close()
-    
-    if mdp == str(liste_etab[1]):
-        return {"identifiant": identifiant}
-    else:
-        return {"identifiant": None}
+    if liste_etab:
+        if mdp == str(liste_etab[1]):
+            return {"identifiant": identifiant}
+        else:
+            return {"identifiant": None}
+    return "Impossible de récupérer la classe"
         
 
 
@@ -191,7 +193,7 @@ def enigmes_disponibles(identifiant):
 
 if __name__ == '__main__':
     chemin = '../static/db/fifoandlifo.db'
-    dico = { 'lycee': 'Lycée de Sada' , 'classe': 'NSI01' , 'password': '12034'}
+    dico = { 'lycee': 'Lycée de Sada' , 'classe': 'NSI01M' , 'password': '1234'}
     #dico2 = { 'lycee': 'Lycée de Sad' , 'classe': 'NSI01' , 'password': '1234'}
 
     print(recuperation_etab_et_classes())
