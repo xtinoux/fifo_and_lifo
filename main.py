@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect,url_for
+from flask import Flask, render_template, request, flash, redirect,url_for, jsonify
 from app.db_utils import recuperation_noms_etablissements, recuperation_etab_et_classes
 from app.COULEURS import *
 import logging
