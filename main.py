@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, redirect,url_for
-from app.db_utils import recuperation_noms_etablissements
+from app.db_utils import recuperation_noms_etablissements, recuperation_etab_et_classes
 from app.COULEURS import *
 import logging
 
@@ -34,7 +34,8 @@ def login():
     Verification des identifiants + récupération des éléments de la classe
     """
     # liste_lycee =  recuperation_noms_etablissements()
-    liste_lycee = ["sada","truc"]
+    dic_etab_classe= recuperation_etab_et_classes()
+    print(dic_etab_classe)
     if request.method == "POST":
         if request.form['password'] == '007' and request.form['username'] == 'james':
            flash('You were successfully logged in')
