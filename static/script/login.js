@@ -48,7 +48,7 @@ function defRadioSection (ListeSection) {
 		radio.setAttribute("name", "section");
 		radio.setAttribute("id", ListeSection[i]);
 		radio.setAttribute("onclick","disablePasswd()");
-		radio.setAttribute("value","radio"+ListeSection[i]);
+		radio.setAttribute("value",ListeSection[i]);
 		document.getElementById("formsection").insertBefore(radio,document.getElementById("label"+ListeSection[i]));
 	};
 }
