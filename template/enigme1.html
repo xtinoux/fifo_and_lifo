@@ -12,104 +12,111 @@
     <script>hljs.initHighlightingOnLoad();</script>
     
   </head>
-  <body>
+  <body style="background-image: url('/static/images/fond_triangles_turquoise.svg');background-size: cover;">
+   
+      
     <noscript>
-    <strong>Attention cette page ne fonctionnera pas correctement sans JavaScript activé. Merci de l'activer pour pouvoir continuer.</strong>
+      <strong>Attention cette page ne fonctionnera pas correctement sans JavaScript activé. Merci de l'activer pour pouvoir continuer.</strong>
     </noscript>
-    
+      
     <header>
+      
     </header>
-    <div class="enigme_content">
-      <h1>1</h1>
-      
-      
-      <pre>
-          <code class="python" style="padding:20px;">
-def mystere(parametre):
-    """
-    Fonction mystèrieuse 
-    """
-    if len(parametre) == 6:
-      return parametre
-    elif len(paramete) > 6:
-      return parametre[-1]
-    return None
-        </code>
-      </pre>
-      <div>
-        Il faut retrouver quel(s) paramètre(s) pour obtenir ...comme résultat
+  
+
+
+      <div class="enigme_content">
+        <h1>1</h1>
+        
+        
+              <pre>
+                    <code class="python" style="padding:20px;text-align: left!important;">
+          def mystere(parametre):
+              """
+              Fonction mystèrieuse 
+              """
+              if len(parametre) == 6:
+                return parametre
+              elif len(paramete) > 6:
+                return parametre[-1]
+              return None
+                  </code>
+        </pre>
+        <div>
+          Il faut retrouver quel(s) paramètre(s) pour obtenir ...comme résultat
+        </div>
       </div>
-    </div>
-    <div class="enigme_content center">
-      <h2>Test</h2>
-      <form class="form-example" method="POST">
-        <div class="form-example">
-          
-          <input type="text" name="test" id="test" placeholder="Valeur à tester">
-        </div>
-        <div class="form-example">
-          <input type="submit" value="Effectuer le test">
-        </div>
-        {% if test_result %}
-          <div class="resultat_test" style=" background-color: rgba(0,0,0,0.4); min-height: 100px; max-width: 70%;margin: auto;">{{test_result}}</div>
-        {% endif %}
-      </form>
-    </div>
 
 
-    <div class="enigme_content center">
-      <h2>Réponse</h2>
-      <form class="form-example" method="POST">
-        <div class="form-example">
-          
-          <input type="text" name="reponse" id="reponse" placeholder="Réponse définitive">
-        </div>
-        <br>
-        <div class="center btn_validation">
-        	<button type="submit" value="">Valider votre réponse</button>
-        </div>
-          
-        <!-- 
-        {% if test_result %}
-          <div class="resultat_test">{{test_result}}</div>
-        {% endif %} -->
-      </form>
-    </div>
 
+      <div class="enigme_content center">
+        <h2>Test</h2>
+        <form class="form-example" method="POST">
+          <div class="form-example">
+            
+            <input type="text" name="test" id="test" placeholder="Valeur à tester">
+          </div>
+          <div class="form-example">
+            <input type="submit" value="Effectuer le test">
+          </div>
+          {% if test_result %}
+            <div class="resultat_test" style=" background-color: rgba(0,0,0,0.4); min-height: 100px; max-width: 70%;margin: auto;">{{test_result}}</div>
+          {% endif %}
+        </form>
+      </div>
+
+
+      <div class="enigme_content center">
+        <h2>Réponse</h2>
+        <form class="form-example" method="POST">
+          <div class="form-example">
+            
+            <input type="text" name="reponse" id="reponse" placeholder="Réponse définitive">
+          </div>
+          <br>
+          <div class="center btn_validation">
+            <button type="submit" value="">Valider votre réponse</button>
+          </div>
+        </form>
+      </div>
 
 
       <div id="popup" class="popup invisible">
         <div class="popup_content">
-          <h2>Vos résultats ont été enrgistrer ...
+          <h2>Vos résultats ont été enregistrés
           retour à l'accueil</h2>
           <div class="content">
             Vous pouvez retourver votre classement parmis les établissements de l'île dans la partie ....
           </div>
         </div>
       </div>
+
+
+
+    </div>
     <!--   <script>
-      function updateHTML(){
-      console.log("Ecriture");
-      let codeArea = document.getElementById("codearea_html");
-      let resultArea = document.getElementById("resultarea_html");
-      let content = codeArea.innerHTML;
-      console.log(content);
-      resultArea.innerText = content;
-      }
-      </script> -->
-      <script>
-      let testResult = "{{test_result}}";
-      let final = "{{final}}";
-      console.log(final);
-      let popup = document.getElementById("popup");
-      popup.addEventListener("click", function(evt){
-      popup.classList.remove("visible");
-      popup.classList.add("invisible");
-      });
-      if(final == "True"  ){
-      popup.classList.remove("invisible");
-      popup.classList.add("visible");
-      }
-      </script>
-    </body>
-  </html>
+    function updateHTML(){
+    console.log("Ecriture");
+    let codeArea = document.getElementById("codearea_html");
+    let resultArea = document.getElementById("resultarea_html");
+    let content = codeArea.innerHTML;
+    console.log(content);
+    resultArea.innerText = content;
+    }
+    </script> -->
+    <script>
+    let testResult = "{{test_result}}";
+    let final = "{{final}}";
+    console.log(final);
+    let popup = document.getElementById("popup");
+    popup.addEventListener("click", function(evt){
+    popup.classList.remove("visible");
+    popup.classList.add("invisible");
+    });
+    if(final == "True"  ){
+    popup.classList.remove("invisible");
+    popup.classList.add("visible");
+    }
+    </script>
+  </body>
+</html>
