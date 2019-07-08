@@ -197,7 +197,7 @@ if __name__ == '__main__':
     dico = { 'lycee': 'Lycée de Sada' , 'classe': 'NSI01' , 'password': '1234'}
     #dico2 = { 'lycee': 'Lycée de Sad' , 'classe': 'NSI01' , 'password': '1234'}
 
-    print(idenfication(dico))
+    print(recuperation_etab_et_classes())
     #print(idenfication2(dico2))
     # print(recuperation_etab_et_classes())
     # print(recuperation_noms_etablissements())
