@@ -40,7 +40,7 @@ def login():
         if request.form['password'] == '007' and request.form['username'] == 'james':
            flash('You were successfully logged in')
            return redirect(url_for('enigme', nb_enigme=None))
-    return render_template("temp_login.html", ma_variable=liste_lycee)
+    return render_template("temp_login.html", ma_variable=dic_etab_classe)
 
 
 

@@ -2,11 +2,16 @@
 import sqlite3
 from random import randint
 
-chemin = '/static/db/fifoandlifo.db'
+chemin = 'static/db/fifoandlifo.db'
+
 
 def recuperation_noms_etablissements():
     ''' pas de parametre
     retourne la liste des établissements sans répétition d'élémént
+    exemple utilisation
+    print(recuperation_noms_etablissements())
+    donne ['Lycée du Nord (Acoua)', 'Lycée de Sada', 'Lycée de Kahani']
+    meme si il y a deux classes au lyvée de sada
     '''    
     conn = sqlite3.connect(chemin)
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
@@ -29,6 +34,10 @@ def recuperation_etab_et_classes():
     la clef du dictionnaire est le nom de l etablissement et la donnee correspondante est une liste avec les classes NSI de
     l'etablissemment 
     pourra etre utilisé pour les menus deroulants
+    exemple
+    print(recuperation_etab_et_classes())
+    donne
+    {'Lycée de Sada': ['NSI01', 'NSI02', 'NSI03'], 'Lycée de Kahani': ['NSI01', 'NSI02'], 'Lycée du Nord (Acoua)': ['NSI01']}
     '''    
     
     conn = sqlite3.connect(chemin)
@@ -47,10 +56,10 @@ def recuperation_etab_et_classes():
     return dico_etab
 
 
-
-
 def lecture_de_la_base():
-    '''  '''
+    ''' fonction qui donne toute la base de donnees
+    a utiliser avec parcimonie si la base est immense
+    '''
     conn = sqlite3.connect(chemin)
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
     cursor.execute("""SELECT * FROM classes""")
@@ -169,6 +178,8 @@ def enigmes_disponibles(identifiant):
 
 if __name__ == '__main__':
     chemin = '../static/db/fifoandlifo.db'
+    print(recuperation_etab_et_classes())
+    print(recuperation_noms_etablissements())
     print(reccup_identifiant('Lycée de Sada','NSI02'))
     print(reccup_identifiant('Lycée de Sada','NSI01'))
     print(reccup_identifiant('Lycée de Sada','NSI03'))
