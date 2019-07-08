@@ -109,14 +109,45 @@
     }
     
 
+    .test-wrapper{
+        margin: auto;
+        margin:auto;
+        width:100%;
+        padding-top: 7%;
+        margin-left: 40%;
+        text-align: left;
+    }
+    .wrapper{
+        text-align: center;
+        min-height: 200px;
+        position: relative;
+    }
+    .fifo-face{
+        /*float : right;*/
+        vertical-align: top;
+        position: absolute;
+        left:70%;
+    }
+
+
+    .fifo-profil{
+        margin-top: -5px;
+    }
+
 
     @media screen and (max-width: 960px) {
         .header {
             min-height: : 100px;
         }
 
-
         .enigme_content{
             width: 80%;
         }
+ }
+ 
+
+        @media screen and (max-width: 780px) {
+    .fifo-face{
+ display: none;
     }
+}
