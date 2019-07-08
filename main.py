@@ -37,12 +37,27 @@ def login():
     dic_etab_classe= recuperation_etab_et_classes()
     print(dic_etab_classe)
     if request.method == "POST":
-        if request.form['password'] == '007' and request.form['username'] == 'james':
-           flash('You were successfully logged in')
-           return redirect(url_for('enigme', nb_enigme=None))
-    return render_template("temp_login.html", ma_variable=dic_etab_classe)
+        password = request.form['password']
+        lycee = request.form['lycee']
+        classe = request.form['classe']
+        auth = indentification({"password":password, "lycee":lycee, "classe":classe})
+        if auth:
+            session["lycee"] = lycee
+            session["classe"] = classe
+            session["uid"] = auth
+            flash('You were successfully logged in')
+            return redirect(url_for('enigme', nb_enigme=None))
+        else:
+            flash('Mot de passe incorrect')
+            return render_template("login.html", ma_variable=dic_etab_classe)
+    return render_template("login.html", ma_variable=dic_etab_classe)
 
-
+app.route("logout")
+def logout():
+    session.pop('uid', None)
+    session.pop('classe', None)
+    session.pop('lycee', None)
+    return "logout"
 
 @app.route('/enigme/', methods=['GET', 'POST'])
 @app.route('/enigme/<int:nb_enigme>', methods=['GET', 'POST'])
