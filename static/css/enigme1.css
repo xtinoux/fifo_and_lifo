@@ -5,8 +5,8 @@
     }
 
     
-    .header {
-    min-height: : 500px;
+    header {
+    min-height: 50px;
     }
 
 
@@ -115,4 +115,8 @@
             min-height: : 100px;
         }
 
+
+        .enigme_content{
+            width: 80%;
+        }
     }
