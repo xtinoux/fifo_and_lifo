@@ -109,16 +109,12 @@ donne un dico avec la uid en clef et
 
 
 
-def idenfication(dico):
+def identification(dico):
     '''  dico_lycee_classe_mdp
     ou alors suite aux tergiversation de l'autre la 
     donne uid si identification ok chaine vide si False (identification erronée)
     '''
-    
     uid = reccup_identifiant(dico['lycee'],dico['classe'])
-    # uid = reccup_identifiant('Lycée de Sada','NSI01')
-#
-    
     return identification2(uid,dico['password'])
     
 
@@ -197,8 +193,8 @@ if __name__ == '__main__':
     dico = { 'lycee': 'Lycée de Sada' , 'classe': 'NSI01' , 'password': '1234'}
     #dico2 = { 'lycee': 'Lycée de Sad' , 'classe': 'NSI01' , 'password': '1234'}
 
+    print(recuperation_etab_et_classes())
     print(idenfication(dico))
-    #print(idenfication2(dico2))
     # print(recuperation_etab_et_classes())
     # print(recuperation_noms_etablissements())
     # print(reccup_identifiant('Lycée de Sada','NSI02'))
@@ -206,6 +202,6 @@ if __name__ == '__main__':
     # print(reccup_identifiant('Lycée de Sada','NSI03'))
     # print(reccup_identifiant('Lycée de Kahani','NSI01'))
 
-    # print(enigmes_disponibles(4))
+    print(enigmes_disponibles(4))
     # raz_reponses_db()
     # print(enigmes_disponibles(4))
