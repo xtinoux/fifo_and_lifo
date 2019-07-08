@@ -77,6 +77,7 @@ def reccup_identifiant(etablissement,classe):
     cursor.execute("""SELECT identifiant,etablissement,classe FROM classes WHERE etablissement = ? AND classe = ?""", (etablissement,classe,))
     liste_etab = cursor.fetchone()
     conn.close()
+    print(liste_etab)
     return(liste_etab[0])
 
 
@@ -102,10 +103,29 @@ def insertion_reponse_db(identifiant,num_enigme,reponse):
   
     conn.close()
     
+'''une fonction qui retourne etant donnee dictionnaire avec clef lycee, classe et password
+donne un dico avec la uid en clef et 
+'''
 
 
-def identification(identifiant,mdp):
-    ''' repond false si le mdp affilié a l'identifiant est correct
+
+def idenfication(dico):
+    '''  dico_lycee_classe_mdp
+    ou alors suite aux tergiversation de l'autre la 
+    donne uid si identification ok chaine vide si False (identification erronée)
+    '''
+    print(dico['lycee'])
+    print(dico['classe'])
+    uid = reccup_identifiant(dico['lycee'],dico['classe'])
+    # uid = reccup_identifiant('Lycée de Sada','NSI01')
+#
+    print(uid)
+    return identification2(uid,dico['password'])
+    
+
+def identification2(identifiant,mdp):
+    ''' repond un dico avec 1 si le mdp affilié a l'identifiant est correct
+    et None si identifiant faux ou inconnu dans la base
     '''
     
     conn = sqlite3.connect(chemin)
@@ -117,9 +137,9 @@ def identification(identifiant,mdp):
     #print((liste_etab[1])
     print(mdp)
     if mdp == str(liste_etab[1]):
-        return {identifiant: True}
+        return {"identifiant": identifiant}
     else:
-        return {identifiant: False}
+        return {"identifiant": None}
         
 
 
@@ -178,12 +198,17 @@ def enigmes_disponibles(identifiant):
 
 if __name__ == '__main__':
     chemin = '../static/db/fifoandlifo.db'
-    print(recuperation_etab_et_classes())
-    print(recuperation_noms_etablissements())
-    print(reccup_identifiant('Lycée de Sada','NSI02'))
-    print(reccup_identifiant('Lycée de Sada','NSI01'))
-    print(reccup_identifiant('Lycée de Sada','NSI03'))
-    print(reccup_identifiant('Lycée de Kahani','NSI01'))
+    dico = { 'lycee': 'Lycée de Sada' , 'classe': 'NSI01' , 'password': '1234'}
+    #dico2 = { 'lycee': 'Lycée de Sad' , 'classe': 'NSI01' , 'password': '1234'}
+
+    print(idenfication(dico))
+    #print(idenfication2(dico2))
+    # print(recuperation_etab_et_classes())
+    # print(recuperation_noms_etablissements())
+    # print(reccup_identifiant('Lycée de Sada','NSI02'))
+    # print(reccup_identifiant('Lycée de Sada','NSI01'))
+    # print(reccup_identifiant('Lycée de Sada','NSI03'))
+    # print(reccup_identifiant('Lycée de Kahani','NSI01'))
 
     # print(enigmes_disponibles(4))
     # raz_reponses_db()
