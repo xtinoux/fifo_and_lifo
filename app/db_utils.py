@@ -27,66 +27,46 @@ def recuperation_noms_etablissements():
 
 def recuperation_etab_et_classes():
     ''' 
-    Sous forme de dictionnaire, donne un etablissement puis toutes les classes de cet etablissement
-    la clef est le nom de l etablissement et la donnee correspondante est une liste avec les classes NSI 
+    Sous forme de dictionnaire, donne les etablissements puis toutes les classes de ces etablissements
+    la clef est le nom de l etablissement et la donnee correspondante est une liste avec les classes NSI de
     l'etablissemment 
-
-
-
-    en cours de fabrication .......
-
+    pourra etre utilisé pour les menus deroulants
     '''    
     
     conn = sqlite3.connect('../static/db/fifoandlifo.db')
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
     cursor.execute("""SELECT etablissement,classe FROM classes""")
     liste_etab = cursor.fetchall()    # contient tous les établissements.
-    #print(liste_etab)
     conn.close()
     dico_etab = {}
 
     for i in range(len(liste_etab)):    # creont un dictionnaire vide des etablissements avec des listes vides
         dico_etab[liste_etab[i][0]] =  []
 
-
-    # aux =  dico_etab[liste_etab[0][0]]
-    # print(aux)
-    # aux.extend(['d'])   
-    # print(aux)
-    #print(dico_etab)
-    # print(dico_etab[liste_etab[1][0]])
-    # dico_etab[liste_etab[1][0]] = { liste_etab[5][1], liste_etab[4][1] }
-    # print(dico_etab)
-    # dico_etab[liste_etab[1][0]] = {5,'r','d'}
-    #dico_etab[liste_etab[1][0]].append({'f'})
-    #print(dico_etab)
     for i in range(len(liste_etab)):
         dico_etab[liste_etab[i][0]].append(liste_etab[i][1])
-        print(dico_etab[ liste_etab[i][0] ])
-        print(liste_etab[i][1])
-    print(liste_etab)
-    print(dico_etab)
     
-    #return list(set(liste))
+    return dico_etab
+
+
 
 
 def lecture_de_la_base():
     '''  '''
-
     conn = sqlite3.connect('../static/db/fifoandlifo.db')
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
     print(cursor)
-    # for l in cursor:
-    #     print(l)
     conn.close()
+
+
 
 def insertion_reponse_db(identifiant,num_enigme,reponse):
     ''' etant donné identifiant= integer  et num_enigme= integer pour l instant 1, 2 ou 3
     insere la reponse dans la base de donnée pour l'enigme numero num_enigme
-    de plus valide la reponse par un True dans
+    de plus valide la reponse par un True dans la base pour indiquer que l'enigme a ete effectuee
     '''
     conn = sqlite3.connect('../static/db/fifoandlifo.db')
-    cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
+    cursor = conn.cursor()      #  definie un curseur(pointeur) qui parcours la base
    
     if num_enigme == 1:
         cursor.execute("""UPDATE classes SET reponse01 = ? WHERE identifiant = ?""", (reponse,identifiant))
@@ -103,10 +83,27 @@ def insertion_reponse_db(identifiant,num_enigme,reponse):
     
 
 
+def identification(identifiant,mdp):
+    ''' repond false si le mdp affilié a l'identifiant est correct
+    '''
+    
+    conn = sqlite3.connect('../static/db/fifoandlifo.db')
+    cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
+    cursor.execute("""SELECT identifiant,mdp FROM classes WHERE identifiant = ?""", (identifiant,))
+    liste_etab = cursor.fetchone()    # contient tous les établissements.
+    conn.close()
+    print(liste_etab)
+    #print((liste_etab[1])
+    print(mdp)
+    if mdp == str(liste_etab[1]):
+        return {identifiant: True}
+    else:
+        return {identifiant: False}
+        
 
 
 def raz_reponses_db():
-    ''' RAZ
+    ''' RAZ de la base
     '''
     
     conn = sqlite3.connect('../static/db/fifoandlifo.db')
@@ -125,12 +122,13 @@ def raz_reponses_db():
     
 def enigmes_disponibles(identifiant):
     ''' donne les enigmes disponibles pour un groupe donné.
-    groupe (etablissement, classe) 
+    cela permet de voir l'evolution d un groupe dans le rallye des trois enigmes
+    identifiant est la clef de la base de donnees (etablissement, classe) 
     compteur est une liste qui donne une liste de boolean
     False = non fait
     True = fait
     ''' 
-    compteur = [False,False,False]   # pour l'instant il y trois enigmes
+    compteur = [False,False,False]   # pour l'instant il y trois enigmes non accessible
     valeur = 0
 
     conn = sqlite3.connect('../static/db/fifoandlifo.db')
@@ -157,61 +155,14 @@ def enigmes_disponibles(identifiant):
 
 
 
-
-
-def reponse_db(identifiant,numero_enigme,reponse):
-    ''' identifiant est un integer
-    numero_enigme est une integer
-    reponse est un texte'''
-
-
-def niveau_evolution_classe(identifiant):
-    ''' etant donné un etablissement et une classe
-    retourne le numero de l'enigme en cours
-    '''
-    evolution = 0
-    conn = sqlite3.connect('../static/db/fifoandlifo.db')
-    cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
-    cursor.execute(f"""SELECT evolution FROM classes WHERE identifiant = ? """, (identifiant,))
-    # formated string
-    evolution = cursor.fetchone()
-    conn.close()
-    return evolution[0]
-
-
-
-
 if __name__ == '__main__':
 
+    print(identification(1,'1234'))
+    print(identification(1,'123'))
+    print(identification(2,'123'))
+    # print(recuperation_etab_et_classes())
 
-    recuperation_etab_et_classes()
-    
-    # etabs = recuperation_noms_etablissements()
-    
-    # print(etabs)
 
-    # print(niveau_evolution_classe(3))
-    # print(niveau_evolution_classe(1))
-    # print(niveau_evolution_classe(4))
-    # print(niveau_evolution_classe(2))
-    
-
-    # rep = 'c est cool on a reussi'
-    # insertion_reponse_db(5,2,rep)
+    # print(enigmes_disponibles(4))
     # raz_reponses_db()
-    # for i in range (1,7):
-    #     print(enigmes_disponibles(i))
-
-    # lecture_de_la_base()
-
-    # lecture_de_la_base()
-
-    # for i in range (1,7):
-        
-    #     for j in range(1,4):
-    #         rep = 'rép'+ str(randint(0,100))
-    #         insertion_reponse_db(i,j,rep)
-
-    # for i in range (1,7):
-    #     print(enigmes_disponibles(i))
-    #     
+    # print(enigmes_disponibles(4))
