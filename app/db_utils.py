@@ -1,6 +1,4 @@
 
-
-
 import sqlite3
 from random import randint
 
@@ -62,14 +60,15 @@ def lecture_de_la_base():
 
 
 def reccup_identifiant(etablissement,classe):
-    ''' donne l'identifiant etant donné un etablissement et une classe dans cet etablissement
+    ''' fonction inetrne non utilisée par les utilisateurs
+    donne l'identifiant etant donné un etablissement et une classe dans cet etablissement
     '''
     conn = sqlite3.connect(chemin)
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
-    cursor.execute("""SELECT identifiant,etablissement,classe FROM classes WHERE etablissement = ? AND classe = ?)""", (etablissement,classe,))
+    cursor.execute("""SELECT identifiant,etablissement,classe FROM classes WHERE etablissement = ? AND classe = ?""", (etablissement,classe,))
     liste_etab = cursor.fetchone()
     conn.close()
-    print(liste_etab)
+    return(liste_etab[0])
 
 
 
@@ -170,12 +169,10 @@ def enigmes_disponibles(identifiant):
 
 if __name__ == '__main__':
     chemin = '../static/db/fifoandlifo.db'
-    print(identification(1,'1234'))
-    print(identification(1,'123'))
-    print(identification(2,'123'))
-    print(lecture_de_la_base())
-    # print(recuperation_etab_et_classes())
-
+    print(reccup_identifiant('Lycée de Sada','NSI02'))
+    print(reccup_identifiant('Lycée de Sada','NSI01'))
+    print(reccup_identifiant('Lycée de Sada','NSI03'))
+    print(reccup_identifiant('Lycée de Kahani','NSI01'))
 
     # print(enigmes_disponibles(4))
     # raz_reponses_db()
