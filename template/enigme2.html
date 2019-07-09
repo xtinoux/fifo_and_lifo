@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>Enigme 1</title>
+    <title>Enigme 2</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/enigme1.css">
@@ -16,6 +16,7 @@
     <script src="/static/assets/codemirror/mode/htmlmixed/htmlmixed.js"></script>
     <script src="/static/assets/codemirror/mode/python/python.js"></script>
     <script src="/static/assets/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="/static/assets/codemirror/keymap/sublime.js"></script>
         
   </head>
   <body style="background-image: url('/static/images/fond_triangles_turquoise.svg');background-size: cover;">
@@ -119,7 +120,10 @@ Entrer votre réponse dans l'éditeur de texte ci-dessous : <br>
     var myCodeMirror = CodeMirror(function(elt) {
   reponseTextArea.parentNode.replaceChild(elt, reponseTextArea);}, {
   theme: "monokai",
-  mode:  "python"
+  indentUnit: 4,
+  keyMap : "sublime",
+  mode:  "python",
+  value: "# Votre réponse ici"
 });
   </script>
 </body>
