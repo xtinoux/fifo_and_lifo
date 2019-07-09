@@ -11,7 +11,7 @@ def recuperation_noms_etablissements():
     exemple utilisation
     print(recuperation_noms_etablissements())
     donne ['Lycée du Nord (Acoua)', 'Lycée de Sada', 'Lycée de Kahani']
-    meme si il y a deux classes au lyvée de sada
+    meme si il y a deux classes au lycée de sada
     '''    
     conn = sqlite3.connect(chemin)
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
@@ -121,10 +121,10 @@ def identification(dico):
     
 
 def identification2(identifiant,mdp):
-    ''' repond un dico avec 1 si le mdp affilié a l'identifiant est correct
+    '''
+    Retourne un dico avec l'uid si le mdp affilié à l'identifiant est correct
     et None si identifiant faux ou inconnu dans la base
     '''
-    
     conn = sqlite3.connect(chemin)
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
     cursor.execute("""SELECT identifiant,mdp FROM classes WHERE identifiant = ?""", (identifiant,))
@@ -140,7 +140,8 @@ def identification2(identifiant,mdp):
 
 
 def raz_reponses_db():
-    ''' RAZ de la base
+    ''' 
+    RAZ de la base
     '''
     
     conn = sqlite3.connect(chemin)
@@ -157,7 +158,8 @@ def raz_reponses_db():
     conn.close()
     
 def enigmes_disponibles(identifiant):
-    ''' donne les enigmes disponibles pour un groupe donné.
+    '''
+    Retourne les enigmes disponibles pour un groupe donné.
     cela permet de voir l'evolution d un groupe dans le rallye des trois enigmes
     identifiant est la clef de la base de donnees (etablissement, classe) 
     compteur est une liste qui donne une liste de boolean
@@ -169,7 +171,8 @@ def enigmes_disponibles(identifiant):
 
     conn = sqlite3.connect(chemin)
     cursor = conn.cursor() #  definie un curseur(pointeur) qui parcours la base
-    cursor.execute("""SELECT enigme01_effectuee FROM classes WHERE identifiant = ?""",(identifiant,))
+    i = "01"
+    cursor.execute(f"""SELECT enigme{i}_effectuee FROM classes WHERE identifiant = ?""",(identifiant,))
     valeur  = cursor.fetchone()
     if valeur[0] == 1:
         compteur[0] = True
@@ -181,11 +184,8 @@ def enigmes_disponibles(identifiant):
     valeur  = cursor.fetchone()
     if valeur[0] == 1:
         compteur[2] = True    
-
-
     conn.close()
-    
-          
+         
     return compteur   
 
 
@@ -196,8 +196,8 @@ if __name__ == '__main__':
     dico = { 'lycee': 'Lycée de Sada' , 'classe': 'NSI01M' , 'password': '1234'}
     #dico2 = { 'lycee': 'Lycée de Sad' , 'classe': 'NSI01' , 'password': '1234'}
 
-    print(recuperation_etab_et_classes())
-    print(identification(dico))
+    # print(recuperation_etab_et_classes())
+    # print(identification(dico))
     # print(recuperation_etab_et_classes())
     # print(recuperation_noms_etablissements())
     # print(reccup_identifiant('Lycée de Sada','NSI02'))
