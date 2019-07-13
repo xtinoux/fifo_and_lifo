@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>Enigme 2</title>
+    <title>Enigme 3</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 
@@ -36,34 +36,64 @@
         
         <h1>2</h1>
         <br>
-        On recherche un nombre mystère de neuf chiffres tous distincts et différents de 0 tel que :
-        <ul style="text-align: left">
-          <li> le nombre formé par le premier chiffre soit divisible par 1 </li>
-          <li> le nombre formé par les deux premiers chiffres soit divisible par 2 </li>
-          <li> le nombre formé par les trois premiers chiffres soit divisible par 3 </li>
-          <li> le nombre formé par les quatre premiers chiffres soit divisible par 4 </li>
-          <li> le nombre formé par les cinq premiers chiffres soit divisible par 5 </li>
-          <li> le nombre formé par les six premiers chiffres soit divisible par 6 </li>
-          <li> le nombre formé par les sept premiers chiffres soit divisible par 7 </li>
-          <li> le nombre formé par les huit premiers chiffres soit divisible par 8 </li>
-          <li> le nombre formé par les neuf premiers chiffres soit divisible par 9 </li>
-        </ul>
-        <br>
+
+
+<h3>Comment l'image a été caché dans une autre.</h3>
+<h4> Principe </h4>
+
+On reconstitue une image (on la notera  <em><code>img3</code></em>) à partir de 2 images (<em><code>img1</code></em>) et (<em><code>img2</code></em>), le résultat resemblera à l’image <em><code>img1</code></em>
+mais contiendra suffisemanent d’information pour reconstitué <em><code>img2</code></em>. 
+<br>
+
+Pour chaque pixel on récupère, les 4 bits les plus importants de chaques composantes RGB :
+<ul class="left">
+  
+<li> Pixel image1 <span style="height: 20px; width: 20px; background-color: rgb(169, 245, 64);color: rgb(169, 245, 64)">12</span></li>  
+En décimale (169, 245, 64), en binaire on obtient sur 8 bits (10101001, 11110101, 0100 0000) <br><br>
+<li>Pixel image2 <span style="height: 20px; width: 20px; background-color: rgb(81,122,188);color: rgb(81,122,188)">22</span> </li> 
+En décimale (81,122,188 ), on obtient en binaire sur 8 bits ( 01010001, 01111010, 10111100 ) <br><br>
+<li>Pixel image3  <span style="height: 20px; width: 20px; background-color: rgb(165, 247,75);color: rgb(165, 247,75)">33</span> </li>
+Et on constitue le pixel de l’image 3 en juxtaposant les 4 bits de l’image 1 et de l’image 2 : <br>
+Donc le pixel de l’image reconstituée sera : ( 10100101, 111110111, 01001011 soit en décimale (165, 247,75) on
+aura donc un pixel de la couleur
+</ul>
+
         <em>  Note : On appelle par premier chiffre le chiffre de gauche.. <br>
         Exemple : <span class="red">1</span>564 a pour premier chiffre <span class="red">1</span> </em>
         <br><br>
         <div class="question" style="font-weight: bold">
-          Ecrire une fonction python nommée nombre_mystere qui retourne le nombre mystère.
+          Écrire une fonction python nommée <em>decriptage_image</em> qui crée un fichier <em>image_cachee.png</em> contenant l'image cachée.
         </div>
         
         <div class="critere-eval left">
           <h4>Critères d'évaluation :</h4>
           <ul>
-            <li>Justesse du résultat,</li>
+            <li>Qualité de l'image cachée,</li>
             <li>Qualité du code,</li>
-            <li>Temps d'execution de la fonction.</li>
           </ul>
         </div>
+      
+      <div class="quote">
+        
+    <button>
+      Un peu d'histoire sur la stéganographie
+    </button>
+      <div class="toggle-text invisible">
+        
+        La stéganographie est l’art de cacher des informations. Cette pratique est très ancienne, et à peu près contemporaine de celle de la cryptographie. <br> <br>
+
+Plutôt que de rendre indéchiffable un message, on le transmet à la vue de tous mais de manière cachée.
+La première trace écrite se trouve dans les Histoires de Hérodote (biographie), parues vers 445 av J.-C, à travers
+plusieurs récits. <br>
+
+Conseiller du roi Darius à la cour de Perse, il voulut organiser une révolte contre les Perses vers 500 av J-.C..
+Pour transmettre son message à Aristagoras, il eut l’idée de raser la tête de son esclave le plus fidèle, de lui tatouerson message sur le crâne et d’attendre que les cheveux repoussent avant d’envoyer l’esclave pour Milet, avec pour consigne de se faire raser les cheveux.
+<br>
+Bien sûr, il ne fallait pas être trop pressé pour transmettre le message !
+
+
+      </div>
+      </div>
       </div>
     </div>
     <div class="enigme_content center">
@@ -96,16 +126,7 @@
           </div>
         </div>
       </div>
-      <!--   <script>
-      function updateHTML(){
-      console.log("Ecriture");
-      let codeArea = document.getElementById("codearea_html");
-      let resultArea = document.getElementById("resultarea_html");
-      let content = codeArea.innerHTML;
-      console.log(content);
-      resultArea.innerText = content;
-      }
-      </script> -->
+ 
       <script>
       let testResult = "{{test_result}}";
       let final = "{{final}}";
@@ -120,20 +141,6 @@
       popup.classList.add("visible");
       }
       </script>
-      <script>
-      var reponseTextArea = document.getElementById("reponse-textarea");
-      var myCodeMirror = CodeMirror(function(elt) {
-      reponseTextArea.parentNode.replaceChild(elt, reponseTextArea);}, {
-      theme: "monokai",
-      indentUnit: 4,
-      keyMap : "sublime",
-      mode:  "python",
-      value: "# Votre réponse ici"
-      });
-
-      function GrosseMagouille(){
-        document.getElementById("hidden-reponse").value = myCodeMirror.value;
-      }
-      </script>
+ 
     </body>
   </html>

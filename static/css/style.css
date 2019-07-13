@@ -10,6 +10,19 @@ html,body{
 	display: block
 }
 
+
+.left{
+	text-align: left;
+}
+
+.right{
+	text-align: right;
+}
+
+.center{
+	text-align: center;
+}
+
 .popup{
 	background: rgba(0,0,0,0.4);
 	z-index:100;

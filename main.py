@@ -89,15 +89,14 @@ def enigme(nb_enigme=None):
             """
             Traitement des réponses aux formulaires
             """
-            reponse = request.form.get("reponse")
             test_value = request.form.get("test")
-            reponse_values = request.form.get("reponse")
-            
-            if reponse:
-                logging.info('Enregistrement de la réponse dans base de donnée')
+            reponse_value = request.form.get("reponse")
+            print(request.form)
+            if reponse_value:
+                print('Enregistrement de la réponse dans base de donnée')
                 test_result = "Reponse enregistée"
-                reponse_db(id_classe, reponse_values)
-                return render_template(f"enigme{nb_enigme}.html", test_result="Résultat enregistée", final=True,  couleurs_d=VIOLETS_D)
+                reponse_db(id_classe, reponse_value)
+                return render_template(f"enigme{nb_enigme}.html", test_result=test_result, final=True,  couleurs_d=VIOLETS_D)
             
             else:
                 logging.info('On effectue un test')
@@ -130,7 +129,7 @@ def test():
     return render_template('carousel.html', couleurs = VIOLETS, couleurs_d = VIOLETS_D, VIOLETS_D= VIOLETS_D, JAUNES_D=JAUNES_D, TURQUOISES_D=TURQUOISES_D)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    app.run(host="0.0.0.0", port=8888, debug=True)
 
 
 # Test MOCK ->
