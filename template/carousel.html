@@ -21,76 +21,124 @@
 	</head>
 	<body>
 		{% with messages = get_flashed_messages() %}
-         {% if messages %}
-            <ul>
-               {% for message in messages %}
-               <li>{{ message }}</li>
-               {% endfor %}
-            </ul>
-         {% endif %}
-      {% endwith %}
-		
-		<div>
-			<div class="background" style="z-index: -10; width: 100vw;height: 100%; margin:0;padding: 0; position: fixed;top:0;" >
+		{% if messages %}
+			<ul>
+				{% for message in messages %}
+					<li>{{ message }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	{% endwith %}
+	
+	<div>
+		<div class="background" style="z-index: -10; width: 100vw;height: 100%; margin:0;padding: 0; position: fixed;top:0;" >
+			{% set couleurs_d = TURQUOISES_D %}
+			{% include "mozaique.html" ignore missing %}
+			<div class='masque invisible'>
+				
+			</div>
+		</div>
+		<div class="background">
+		</div>
+		<div class="carousel" >
+			
+			<div class="carousel_item" onclick="select(2)">
+				{% set couleurs_d = VIOLETS_D %}
+				{% include "mozaique.html" ignore missing %}
+				star star
+			</div>
+			<div class="carousel_item" onclick="select(1)" >
 				{% set couleurs_d = TURQUOISES_D %}
 				{% include "mozaique.html" ignore missing %}
-				<div class='masque invisible'>
-					
-				</div>
+				star
 			</div>
-			<div class="background">
+			<div class="carousel_item" style="" onclick="select(3)">
+				{% set couleurs_d = JAUNES_D %}
+				{% include "mozaique.html" ignore missing %}
+				star star star
 			</div>
-			<div class="carousel" >
-				
-				<div class="carousel_item">
-					{% set couleurs_d = VIOLETS_D %}
-					{% include "mozaique.html" ignore missing %}
-					
-				</div>
-				<div class="carousel_item" >
-					{% set couleurs_d = TURQUOISES_D %}
-					{% include "mozaique.html" ignore missing %}
-					
-				</div>
-				<div class="carousel_item" style="">
-					{% set couleurs_d = JAUNES_D %}
-					{% include "mozaique.html" ignore missing %}
-				</div>
-				<div class="carousel_focus visible">
-					{% set couleurs_d = TURQUOISES_D %}
-					{% include "mozaique.html" ignore missing %}
-					<!-- <div class="masque"> </div> -->
-				</div>
-				
-			</div>
-			<div class="content">
-				<h2>descriptif de la mission</h2>
-				<p>
-					<span>Mission 1</span> <br>
-					<span>Sequi et, facilis ea id corrupti explicabo suscipit dolorem doloribus eveniet asperiores tempora, natus eos nobis hic! Nam tenetur aut vitae fugit dicta! Numquam atque optio blanditiis illo doloribus alias?</span>
-				</p>
+			<div class="carousel_focus visible">
+				{% set couleurs_d = TURQUOISES_D %}
+				{% include "mozaique.html" ignore missing %}
+				<!-- <div class="masque"> </div> -->
 			</div>
 			
 		</div>
+		<div class="carousel-1">
+			{% for enigme in enigmes %}
+				{%  if enigme['niveau'] == 1 %}
+				<div class="carousel-item">
+					
+					<div class="content">
+						<h2>Descriptif de la mission</h2>
+						<p>
+							<h4>Mission : {{enigme['titre']}} </h4> <br>
+							<span class="resume">
+								{{enigme['resume']}}
+							</span>
+							<span class="langage">{{enigme['langage']}} </span>
+							<span class="niveau"> {{enigme['niveau']}} </span>
+						</p>
+					</div>
+				</div>
+			{% endif %}
+		{% endfor %}
 	</div>
+	
+	<div class="carousel-2">
+		{% for enigme in enigmes %}
+			{%  if enigme['niveau'] == 2 %}
+			<div class="carousel-item">
+				
+				<div class="content">
+					<h2>Descriptif de la mission</h2>
+					<p>
+						<h4>Mission : {{enigme['titre']}} </h4> <br>
+						<span class="resume">
+							{{enigme['resume']}}
+						</span>
+						<span class="langage">{{enigme['langage']}} </span>
+						<span class="niveau"> {{enigme['niveau']}} </span>
+					</p>
+				</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+</div>
+<div class="carousel-3">
+	{% for enigme in enigmes %}
+		{%  if enigme['niveau'] == 3 %}
+		<div class="carousel-item">
+			
+			<div class="content">
+				<h2>Descriptif de la mission</h2>
+				<p>
+					<h4>Mission : {{enigme['titre']}} </h4> <br>
+					<span class="resume">
+						{{enigme['resume']}}
+					</span>
+					<span class="langage">{{enigme['langage']}} </span>
+					<span class="niveau"> {{enigme['niveau']}} </span>
+				</p>
+			</div>
+		</div>
+	{% endif %}
+{% endfor %}
+</div>
 </div>
 </body>
 <!-- <script>
 	function gestionEvent(elmt){
 		elm.addEventListener(keypress){ () => {
-
 		}}
 	}
 </script> -->
-
 <script>
 	function toogle(elmt){
 		elmt.classList()
 		if in
 		elmt.style.removeClass()
-
 	}
-
 	let in_focus = 1
 	let aviaibles = ["1","3"]
 	let items = document.querySelectorAll(".carousel_item");
@@ -107,5 +155,15 @@
 			{console.log("Pas disponible") }
 		
 		});
+</script>
+
+<script>
+	let enigmes_1 = document.querySelectorAll(".carousel-2 > div");
+	console.log(enigmes_1);
+	enigmes_1.forEach(function(elmt){
+		elmt.style.display="inline-block";
+		elmt.style.float="left";
+		elmt.style.left="100%";
+	})
 </script>
 </html>

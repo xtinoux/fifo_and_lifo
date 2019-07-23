@@ -19,7 +19,9 @@
     <script src="/static/assets/codemirror/keymap/sublime.js"></script>
     <!-- Ajout de fontawesome -->
     <script src="https://kit.fontawesome.com/433c8a0c96.js"></script>
-
+    <!-- Ajout de effet apparition -->
+    <script src="/static/js/apparition.js"></script>
+    <link rel="stylesheet" href="/static/css/apparition.css">
   </head>
   <body style="background-image: url('/static/images/fond_triangles_turquoise.svg');background-size: cover;">
     
@@ -32,32 +34,34 @@
       
     </header>
     
-    <div class="enigme_content">
-      <div class="wrapper-text" style="margin: 50px;">
-        
+    <div class="enigme_content reveal">
+      <div class="wrapper-text " style="margin: 50px;">
         <h1>5</h1>
+          
         <br>
+        <div class="reveal-1">
         Voici un message crypté à l'aide du   <a href="https://fr.wikipedia.org/wiki/Chiffrement_par_d%C3%A9calage">code César</a>. <br> <br>
         <div class="quote left"> <i class="fa fa-hashtag fa-2x gray"></i>
           kajex exdb jeni andbbr j mnlahycna un vnbbjpn bnlanc lahycé yja uj vncqxmn mn lnbja. <br>
           ln lxmjpn lxvvn exdb yxdeni un lxwbcjcna w'nbc yjb canb noorljln ydrbzd'dwn jwjuhbn mn uj anyncrcrxw mn uj unccan uj yudb lxdajwcn mn uj ujwpdn mjwb ujzdnuun ru j ncn nlarc ynavnc mn lxwwjrcan un mnljuujpn. <br>
           unb vncqxmnb mn lahycjpnb jlcdnuunb anyxbnwc yudcxc bda u'dbjpn mn lun yarenn - lun ydkurl.
         </div>
+        </div>
         
         <br><br>
-        <div class="question" style="font-weight: bold">
+        <div class="question reveal-2" style="font-weight: bold">
           Ecrire une fonction python nommée :<strong> <pre>decryptage</pre></strong> qui prend en paramètre un texte crypté avec le code César  et qui retourne le texte décrypté.
         </div>
         
         <br>
 
         <div>
-          <div class="indice">
+          <div class="indice reveal-3">
             <i class='fa fa-lightbulb gray'></i>
             <strong>Indice :</strong>  Dans ce texte, comme de manière générale en français, la lettre la plus présente est le <strong>e</strong>
           </div>
         </div>
-        <div class="critere-eval left">
+        <div class="critere-eval left reveal-4">
           <h4>Critères d'évaluation :</h4>
           <ul>
             <li>Justesse du résultat,</li>
@@ -66,8 +70,10 @@
         </div>
       </div>
     </div>
-    <div class="enigme_content center">
-      <h2>Réponse</h2>
+    <div class="enigme_content center reveal">
+      <h2 class="reveal-1">Réponse</h2>
+        <div class="reveal-2">
+          
       Entrer le code de la fonction <strong>decryptage</strong> dans l'éditeur de texte ci-dessous : <br>
       <br>
 
@@ -76,13 +82,14 @@
         <input class="invisible" type="text" id="hidden-reponse" name="reponse" >
         <div class="left">
           
-          <textarea id="reponse-textarea" rows="20" cols="50" name="reponse" form="reponse-form">
+          <textarea id="reponse-textarea" rows="20" cols="50" name="reponse__code" form="reponse-form">
           </textarea>
         </div>
          <br>
          Entrer le message décrypté ci-dessous : <br>
-         <textarea name="repons" id=""  form="reponse-form" style="width: 99%; min-height: 200px;"></textarea>
-        <div class="form-example">
+         <textarea name="reponse__texte-decrypte" id=""  form="reponse-form" style="width: 99%; min-height: 200px;"></textarea>
+        </div>     
+        <div class="form-example reveal-2">
           <div class="center btn_validation">
             
             <br>

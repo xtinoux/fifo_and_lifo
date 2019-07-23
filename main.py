@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify, session
 from app.db_utils import *
+from app.test_db import *
 from app.COULEURS import *
 import logging
 
 
+my_db = Outils_db("static/db/fifoandlifo.db")
 
 def reponse_db(*args):
     pass
@@ -69,7 +71,14 @@ def enigme(nb_enigme=None):
     Gestion des enigmes
     """
     if not nb_enigme:
-        return render_template('carousel.html', couleurs = VIOLETS, couleurs_d = VIOLETS_D, VIOLETS_D= VIOLETS_D, JAUNES_D=JAUNES_D, TURQUOISES_D=TURQUOISES_D)
+        enigmes = my_db.recuperation_enigme()
+        return render_template('carousel.html',
+            enigmes=enigmes,
+            couleurs=VIOLETS,
+            couleurs_d=VIOLETS_D,
+            VIOLETS_D=VIOLETS_D, 
+            JAUNES_D=JAUNES_D,
+            TURQUOISES_D=TURQUOISES_D)
 
     if nb_enigme:
         def test(*args):
