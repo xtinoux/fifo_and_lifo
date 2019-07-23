@@ -85,7 +85,8 @@ def parser_w3c_result(reponseHTML):
     Récupère les class "warning" et "error"
     de la réponse du w3c validateur
 
-    @param 
+    @param {response -> request}
+    @result {dic} : Cle nb_errors, errors, nb_warnings, warnings
     """
     soup = BeautifulSoup(reponseHTML.text, 'html.parser')
     errors = soup.find_all(class_="error")
@@ -96,12 +97,12 @@ def parser_w3c_result(reponseHTML):
         error_items.append(error.find('span'))
     for warning in warnings:
         warning_items.append(warning.find('span'))
-    print(error_items)
-    print(len(error_items))
-    print(warning_items)
-    print(len(warning_items))
+    return {"nb_errors":len(error_items),
+    "errors":error_items,
+    "nb_warnings":len(warning_items),
+    "warnings":warning_items}
 
 
 if __name__ == '__main__':
     r = w3c_validation(HTMLcode)
-    parser_w3c_result(r)
+    print(parser_w3c_result(r))
