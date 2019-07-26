@@ -20,6 +20,23 @@ class Outils_db():
         """
         self.path_db = path_db
 
+    ##################################
+    # Méthode de création
+    ##################################
+
+
+    ##################################
+    # Méthode d'initialisation
+    ##################################
+
+    def init_table_lycee(self):
+        for lycee,lycee_id in [("LPO de Sada","sada"), ("LPO de Kahani","kahani"), ("LPO Bamana","bamana"), ("LPO de Mamoudzou Nord","mdz-nord"), ("LPO de Petite Terre","petite-terre"), ("LPO du Nord","nord"), ("LPO de Chirongi","chirongui"), ("LPO de Brandélé","bandrele"), ("LPO de Dembeni","dembeni"), ("LPO de Kaweni","kaweni")]:
+            for i in range(1, 4):
+                self.add_lycee( id_classe=f"{lycee_id}-{i}",lycee=lycee, classe=f"NSI 0{i}", password=secret())
+
+    ##################################
+    # Méthode de recuperation        #
+    ##################################
     def get_enigmes(self):
         """
         Renvoie la liste des enigmes.
@@ -40,13 +57,13 @@ class Outils_db():
                     'titre': data[4]})
         return enigmes
 
-    def get_lycee(self):
+    def get_lycees(self):
         """
         Renvoie la liste des lycees.
 
         @arg {objet} : self
         @return {list} : liste de dic cle lycee, id_classe, classe, password"""
-        enigmes = []
+        lycees = []
         with connect(self.path_db) as conn:
             cursor = conn.cursor()
             cursor.execute("""SELECT id_classe, lycee, classe, password FROM lycee""")
@@ -56,6 +73,26 @@ class Outils_db():
                     'lycee': data[1],
                     'classe': data[2],
                     'password': data[3]})
+        return lycees
+
+    def get_classe_par_lycee(self):
+        """
+        Renvoie la liste des lycees sans doublons avec la liste des classes .
+
+        @arg {objet} : self
+        @return {list} : liste de dic || cle:lycee -> nom du lycée, cle:classes  liste de dic  classe et id_classe"""
+        lycees = []
+        with connect(self.path_db) as conn:
+            cursor = conn.cursor()
+            cursor.execute("""SELECT lycee FROM LYCEE""")
+            datas = set(cursor.fetchall())
+            for lycee in datas:
+                tmp_classes = []
+                cursor.execute("""SELECT id_classe, classe FROM LYCEE WHERE lycee = ?""",(lycee,))
+                classes = cursor.fetchall()
+                for classe in classes:
+                    tmp_classes.append({'id_classe': data[0],'classe': data[1]})
+            lycees.append("lycee":lycee; "classes":tmp_classes)
         return lycees
 
     def update_enigme(self):
@@ -89,9 +126,8 @@ def secret(nb_car=6):
     return password
 
 
+
 if __name__ == '__main__':
     my_db = Outils_db("../static/db/fifoandlifo.db")
-    for lycee,lycee_id in [("LPO de Sada","sada"), ("LPO de Kahani","kahani"), ("LPO Bamana","bamana"), ("LPO de Mamoudzou Nord","mdz-nord"), ("LPO de Petite Terre","petite-terre"), ("LPO du Nord","nord"), ("LPO de Chirongi","chirongui"), ("LPO de Brandélé","bandrele"), ("LPO de Dembeni","dembeni"), ("LPO de Kaweni","kaweni")]:
-        for i in range(1, 4):
-            my_db.add_lycee( id_classe=f"{lycee_id}-{i}",lycee=lycee, classe=f"NSI 0{i}", password=secret())
+
 
