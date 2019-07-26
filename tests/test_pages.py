@@ -50,7 +50,7 @@ class BasicTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_enigme(self):
-        for i in range(1,5):
+        for i in [1,2,3,5]:
             response = self.app.get(f'/enigme/{i}')
             self.assertEqual(response.status_code, 200)
     
