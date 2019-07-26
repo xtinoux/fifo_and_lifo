@@ -1,0 +1,15 @@
+image: python:3.6
+
+stages:
+  # Liste des etapes ( correspond au tags des des runners)
+  - test
+
+test:
+  stage: test
+
+  before_script:
+    - pip install requirements.txt
+
+  script:
+    # Lancement des tests unitaires
+    - python -m unittest tests.test
