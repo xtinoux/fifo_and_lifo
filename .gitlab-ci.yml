@@ -15,4 +15,4 @@ test:
   script:
     # Lancement des tests unitaires
     - python -m unittest tests.test_basic
-    - python -m unittest tests.test_enigme2
+    #- python -m unittest tests.test_enigme2
