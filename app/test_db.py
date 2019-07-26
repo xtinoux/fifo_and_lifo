@@ -1,15 +1,6 @@
 from sqlite3 import connect
 
-# with connect(path_db) as conn:
-#         cursor = conn.cursor()
-#         cursor.execute("""SELECT etablissement FROM classes""")
-#         liste_etab = cursor.fetchall()
-# print(liste_etab)
-
-
 class Outils_db():
-
-
 
     def __init__(self, path_db):
         """
@@ -75,7 +66,7 @@ class Outils_db():
                     'password': data[3]})
         return lycees
 
-    def get_classe_par_lycee(self):
+    def get_classe_by_lycee(self):
         """
         Renvoie la liste des lycees sans doublons avec la liste des classes .
 
@@ -84,15 +75,15 @@ class Outils_db():
         lycees = []
         with connect(self.path_db) as conn:
             cursor = conn.cursor()
-            cursor.execute("""SELECT lycee FROM LYCEE""")
+            cursor.execute("""SELECT lycee FROM lycees""")
             datas = set(cursor.fetchall())
             for lycee in datas:
                 tmp_classes = []
-                cursor.execute("""SELECT id_classe, classe FROM LYCEE WHERE lycee = ?""",(lycee,))
+                cursor.execute("""SELECT id_classe, classe FROM lycees WHERE lycee = ?""",lycee)
                 classes = cursor.fetchall()
                 for classe in classes:
-                    tmp_classes.append({'id_classe': data[0],'classe': data[1]})
-            lycees.append("lycee":lycee; "classes":tmp_classes)
+                    tmp_classes.append({'id_classe': classe[0],'classe': classe[1]})
+                lycees.append({"lycee":lycee[0], "classes":tmp_classes})
         return lycees
 
     def update_enigme(self):
@@ -129,5 +120,6 @@ def secret(nb_car=6):
 
 if __name__ == '__main__':
     my_db = Outils_db("../static/db/fifoandlifo.db")
+    print(my_db.get_classe_by_lycee())
 
 
