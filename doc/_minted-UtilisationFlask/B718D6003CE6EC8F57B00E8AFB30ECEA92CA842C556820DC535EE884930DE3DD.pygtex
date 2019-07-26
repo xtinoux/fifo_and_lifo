@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nd}{@app.route}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}/formulaire/\PYGZsq{}}\PYG{p}{)}
+\PYG{k}{def} \PYG{n+nf}{formulaire}\PYG{p}{():}
+  \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}ici on traite le formulaire\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+  \PYG{k}{return} \PYG{n}{render\PYGZus{}template}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}form.html\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

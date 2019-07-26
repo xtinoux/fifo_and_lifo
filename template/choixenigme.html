@@ -1,0 +1,197 @@
+<html>
+	<head>
+		<title>Choix des énigmes</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+		<!-- <link rel="stylesheet" type="text/css" media="screen" href="/static/css/carousel.css" /> -->
+		<link href="https://fonts.googleapis.com/css?family=Lato:300|Roboto&display=swap" rel="stylesheet">
+		<!-- Ajout de fontawesome -->
+		<script src="https://kit.fontawesome.com/433c8a0c96.js"></script>
+		<style>
+			
+			html, body{
+				margin: 0;
+				padding:0;
+				font-family: lato,sans-sherif;
+			}
+			
+			body{
+				background-image: url('/static/images/bg_form7.jpg');
+				background-size:cover;
+			}
+			.invisible{
+				display: none;
+			}
+			
+			.visible{
+				display: block;
+			}
+			button{
+				min-height: 50px;
+				width: 60%;
+				margin: auto;
+				margin-bottom: 20px;
+				background-color: white;
+				font-size: 1em;
+				position: absolute;
+				bottom: 10px;
+				left: 20%;
+			}
+			.wrapper{
+				height: 60vh;
+				position: relative;
+				margin-top: 5%;
+				text-align: center;
+			}
+			.wrapper-btn-left{
+				width: 17%;
+				height: 100%;
+				margin: 0;
+				padding:0;
+				display: inline-flex;
+				margin-left: auto;
+				vertical-align: top;
+				position: relative;
+				left:40px;
+				z-index: -1
+
+			}
+			h4{
+				font-size: 1.5em;
+			}
+			.content{
+				width: 65%;
+				height: 100%;
+				margin: 0;
+				padding:0;
+				display: inline-flex;
+		vertical-align: top;
+		z-index: 10;
+	background-color: rgba(0,0,0,0.7);
+	padding: 20px;
+	font-size: 1.4em;
+	text-align: center;
+	min-height: 40%;
+ 	margin: auto;
+	
+	max-width: 760px;
+	color:white;
+
+			}
+	.wrapper-contenu{
+			position: relative;
+	}
+			.wrapper-btn-right{
+				width: 17%;
+				height: 100%;
+				margin: 0;
+				padding:0;
+				display: inline-flex;
+ 				vertical-align: top;
+				z-index:-1;
+				position: relative;
+				right:40px;
+			}
+			.vertical-align{
+				position: absolute;
+			top: 50%;
+			-ms-transform: translateY(-50%);
+			transform: translateY(-50%);
+		}
+		.left{
+		text-align: left
+		}
+		.right{
+		text-align: right;
+		width: 100%
+		}
+	</style>	</head>
+	<body>
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<ul>
+				{% for message in messages %}
+					<li>{{ message }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	{% endwith %}
+	
+	<!-- {% if not  nb_enigme == 1 %} -->
+	
+	<!-- {% endif %} -->
+	
+	<div class="wrapper">
+		<!-- Bouton droit -->
+		<div class="wrapper-btn-left">
+			
+			<div class="vertical-align right ">
+				<i class="fa fa-chevron-circle-left fa-7x" aria-hidden="true" style="color:white" ></i>
+			</div>
+		</div>
+		
+		<div class="content" s>
+			<div class="wrapper-contenu" style="display: inline-block;float: left;width: 65%;vertical-align: top">
+				
+				<h4>Mission : <br> {{enigme['titre']}} </h4>
+				<p>
+					<span class="resume">
+						{{enigme['resume']}}
+					</span>
+				</p>
+				
+				<button>Choisir cette mission</button>
+			</div>
+
+			<div class="wrapper-info"
+				style="display:inline-block;float: right;width: 30%;vertical-align: top">
+<div class="niveau" style="    height: 150px;
+						color: #FFF;
+						text-align: center;
+						padding: 0 20px;
+						margin: 20px;
+						display: flex;
+						justify-content: center; /* align horizontal */
+						align-items: center;
+						border-bottom: 2px solid white; "> {% for i in range(enigme['niveau']) %} <i class="fas fa-star fa-2x"></i>
+						{% endfor %} </div>
+
+<br>
+						<div class="langage" style='    height: 150px;
+							font-size: 24px;
+							font-style: oblique;
+							color: #FFF;
+							text-align: center;
+							padding: 0 20px;
+							margin: 20px;
+							display: flex;
+							justify-content: center; /* align horizontal */
+							align-items: center;  '>
+							{% if enigme['langage'].lower() == "python" %}
+								<i class="fab fa-python fa-4x"></i>
+								{% elif enigme['langage'].lower() == "html" %}
+								<i class="fab fa-html5 fa-4x"></i>
+							{% else %}
+								{{enigme['langage']}}
+							{% endif %}
+						</div>
+					
+				</div>
+
+
+				</div>
+				
+			
+			{% if not  nb_enigme == len_enigmes %}
+				<div class="wrapper-btn-right">
+					<div class="vertical-align  ">
+						
+						<i class="fa fa-chevron-circle-right fa-7x" aria-hidden="true" style="color:white" ></i>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+		
+	</body>
+	
+</html>

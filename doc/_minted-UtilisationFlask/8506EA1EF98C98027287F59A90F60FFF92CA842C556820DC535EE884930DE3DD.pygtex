@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nd}{@app.route}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}/formulaire/\PYGZsq{}}\PYG{p}{,} \PYG{n}{methods}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}GET\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}POST\PYGZdq{}}\PYG{p}{])}
+\PYG{k}{def} \PYG{n+nf}{formulaire}\PYG{p}{():}
+  \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}ici on traite le formulaire\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+  \PYG{k}{if} \PYG{n}{request}\PYG{o}{.}\PYG{n}{method} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}POST\PYGZsq{}}\PYG{p}{:}
+      \PYG{n}{nom} \PYG{o}{=} \PYG{n}{request}\PYG{o}{.}\PYG{n}{form}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}reponse\PYGZdq{}}\PYG{p}{)}
+      \PYG{k}{print}\PYG{p}{(}\PYG{n}{nom}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} On affiche le résultat dans la console}
+      \PYG{k}{return} \PYG{n}{nom} \PYG{c+c1}{\PYGZsh{} On affiche le résultat dans une page WEB}
+  \PYG{k}{return} \PYG{n}{render\PYGZus{}template}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}form.html\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nd}{@app.route}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}/bonjour\PYGZsq{}}\PYG{p}{)}
+\PYG{k}{def} \PYG{n+nf}{bonjour}\PYG{p}{():}
+    \PYG{n}{equipe} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}denis\PYGZsq{}}\PYG{p}{,}\PYGZbs{}
+     \PYG{l+s+s1}{\PYGZsq{}alan\PYGZsq{}}\PYG{p}{,}\PYGZbs{}
+     \PYG{l+s+s1}{\PYGZsq{}joris\PYGZsq{}}\PYG{p}{,}\PYGZbs{}
+     \PYG{l+s+s1}{\PYGZsq{}eric\PYGZsq{}}\PYG{p}{,}\PYGZbs{}
+     \PYG{l+s+s1}{\PYGZsq{}etienne\PYGZsq{}}\PYG{p}{]}
+    \PYG{k}{return} \PYG{n}{render\PYGZus{}template}\PYG{p}{(}
+      \PYG{l+s+s1}{\PYGZsq{}/bonjour.html\PYGZsq{}}\PYG{p}{,}
+      \PYG{n}{equipe}\PYG{o}{=}\PYG{n}{equipe}\PYG{p}{)}
+\end{Verbatim}

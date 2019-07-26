@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Bonjour</title> 
+	</head>
+	<body style="background-image: url('/static/images/bonjour.jpg');background-size: cover;">
+		
+<h1>Bonjour l'équipe</h1>
+
+<ul>
+{% for nom in equipe %}
+	<li>{{nom}}</li>
+{% endfor %}
+</ul>
+
+	</body>
+</html>

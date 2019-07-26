@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Enigme 3</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/enigme1.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300|Roboto&display=swap" rel="stylesheet">
+    <!-- Highlight mise en forme du code  -->
+    <link rel=stylesheet href="/static/assets/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="/static/assets/codemirror/theme/monokai.css">
+    <script src="/static/assets/codemirror/lib/codemirror.js"></script>
+    <script src="/static/assets/codemirror/mode/javascript/javascript.js"></script>
+    <script src="/static/assets/codemirror/mode/css/css.js"></script>
+    <script src="/static/assets/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="/static/assets/codemirror/mode/python/python.js"></script>
+    <script src="/static/assets/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="/static/assets/codemirror/keymap/sublime.js"></script>
+    
+  </head>
+  <body style="background-image: url('/static/images/fond_triangles_turquoise.svg');background-size: cover;">
+    
+    
+    <noscript>
+    <strong>Attention cette page ne fonctionnera pas correctement sans JavaScript activé. Merci de l'activer pour pouvoir continuer.</strong>
+    </noscript>
+    
+    <header>
+      
+    </header>
+    
+    <div class="enigme_content">
+      <div class="wrapper-text" style="margin: 50px;">
+        
+        <h1>2</h1>
+        <br>
+
+
+<h3>Comment l'image a été caché dans une autre.</h3>
+<h4> Principe </h4>
+
+On reconstitue une image (on la notera  <em><code>img3</code></em>) à partir de 2 images (<em><code>img1</code></em>) et (<em><code>img2</code></em>), le résultat resemblera à l’image <em><code>img1</code></em>
+mais contiendra suffisemanent d’information pour reconstitué <em><code>img2</code></em>. 
+<br>
+
+Pour chaque pixel on récupère, les 4 bits les plus importants de chaques composantes RGB :
+<ul class="left">
+  
+<li> Pixel image1 <span style="height: 20px; width: 20px; background-color: rgb(169, 245, 64);color: rgb(169, 245, 64)">12</span></li>  
+En décimale (169, 245, 64), en binaire on obtient sur 8 bits (10101001, 11110101, 0100 0000) <br><br>
+<li>Pixel image2 <span style="height: 20px; width: 20px; background-color: rgb(81,122,188);color: rgb(81,122,188)">22</span> </li> 
+En décimale (81,122,188 ), on obtient en binaire sur 8 bits ( 01010001, 01111010, 10111100 ) <br><br>
+<li>Pixel image3  <span style="height: 20px; width: 20px; background-color: rgb(165, 247,75);color: rgb(165, 247,75)">33</span> </li>
+Et on constitue le pixel de l’image 3 en juxtaposant les 4 bits de l’image 1 et de l’image 2 : <br>
+Donc le pixel de l’image reconstituée sera : ( 10100101, 111110111, 01001011 soit en décimale (165, 247,75) on
+aura donc un pixel de la couleur
+</ul>
+
+        <em>  Note : On appelle par premier chiffre le chiffre de gauche.. <br>
+        Exemple : <span class="red">1</span>564 a pour premier chiffre <span class="red">1</span> </em>
+        <br><br>
+        <div class="question" style="font-weight: bold">
+          Écrire une fonction python nommée <em>decriptage_image</em> qui crée un fichier <em>image_cachee.png</em> contenant l'image cachée.
+        </div>
+        
+        <div class="critere-eval left">
+          <h4>Critères d'évaluation :</h4>
+          <ul>
+            <li>Qualité de l'image cachée,</li>
+            <li>Qualité du code,</li>
+          </ul>
+        </div>
+      
+      <div class="quote">
+        
+    <button>
+      Un peu d'histoire sur la stéganographie
+    </button>
+      <div class="toggle-text invisible">
+        
+        La stéganographie est l’art de cacher des informations. Cette pratique est très ancienne, et à peu près contemporaine de celle de la cryptographie. <br> <br>
+
+Plutôt que de rendre indéchiffable un message, on le transmet à la vue de tous mais de manière cachée.
+La première trace écrite se trouve dans les Histoires de Hérodote (biographie), parues vers 445 av J.-C, à travers
+plusieurs récits. <br>
+
+Conseiller du roi Darius à la cour de Perse, il voulut organiser une révolte contre les Perses vers 500 av J-.C..
+Pour transmettre son message à Aristagoras, il eut l’idée de raser la tête de son esclave le plus fidèle, de lui tatouerson message sur le crâne et d’attendre que les cheveux repoussent avant d’envoyer l’esclave pour Milet, avec pour consigne de se faire raser les cheveux.
+<br>
+Bien sûr, il ne fallait pas être trop pressé pour transmettre le message !
+
+
+      </div>
+      </div>
+      </div>
+    </div>
+    <div class="enigme_content center">
+      <h2>Réponse</h2>
+      Entrer votre réponse dans l'éditeur de texte ci-dessous : <br>
+      <br>
+      <form class="form-example" id="reponse-form" method="POST">
+        <input class="invisible" type="text" id="hidden-reponse" name="reponse" >
+        <div class="left">
+          
+          <textarea id="reponse-textarea" rows="20" cols="50" name="reponse" form="reponse-form">
+          </textarea>
+        </div>
+        
+        <div class="form-example">
+          <div class="center btn_validation">
+            
+            <br>
+            
+            <button  type="submit" value="" onclick="GrosseMagouille()">Valider votre réponse</button>
+          </div>
+        </form>
+      </div>
+      <div id="popup" class="popup invisible">
+        <div class="popup_content">
+          <h2>Vos résultats ont été enregistrés
+          retour à l'accueil</h2>
+          <div class="content">
+            Vous pouvez retourver votre classement parmis les établissements de l'île dans la partie ....
+          </div>
+        </div>
+      </div>
+ 
+      <script>
+      let testResult = "{{test_result}}";
+      let final = "{{final}}";
+      console.log(final);
+      let popup = document.getElementById("popup");
+      popup.addEventListener("click", function(evt){
+      popup.classList.remove("visible");
+      popup.classList.add("invisible");
+      });
+      if(final == "True"  ){
+      popup.classList.remove("invisible");
+      popup.classList.add("visible");
+      }
+      </script>
+ 
+    </body>
+  </html>

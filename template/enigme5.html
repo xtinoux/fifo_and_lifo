@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Enigme 5</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/enigme1.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300|Roboto&display=swap" rel="stylesheet">
+    <!-- Highlight mise en forme du code  -->
+    <link rel=stylesheet href="/static/assets/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="/static/assets/codemirror/theme/monokai.css">
+    <script src="/static/assets/codemirror/lib/codemirror.js"></script>
+    <script src="/static/assets/codemirror/mode/javascript/javascript.js"></script>
+    <script src="/static/assets/codemirror/mode/css/css.js"></script>
+    <script src="/static/assets/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="/static/assets/codemirror/mode/python/python.js"></script>
+    <script src="/static/assets/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="/static/assets/codemirror/keymap/sublime.js"></script>
+    <!-- Ajout de fontawesome -->
+    <script src="https://kit.fontawesome.com/433c8a0c96.js"></script>
+    <!-- Ajout de effet apparition -->
+    <script src="/static/js/apparition.js"></script>
+    <link rel="stylesheet" href="/static/css/apparition.css">
+  </head>
+  <body style="background-image: url('/static/images/fond_triangles_turquoise.svg');background-size: cover;">
+    
+    
+    <noscript>
+    <strong>Attention cette page ne fonctionnera pas correctement sans JavaScript activé. Merci de l'activer pour pouvoir continuer.</strong>
+    </noscript>
+    
+    <header>
+      
+    </header>
+    
+    <div class="enigme_content reveal">
+      <div class="wrapper-text " style="margin: 50px;">
+        <h1>5</h1>
+          
+        <br>
+        <div class="reveal-1">
+        Voici un message crypté à l'aide du   <a href="https://fr.wikipedia.org/wiki/Chiffrement_par_d%C3%A9calage">code César</a>. <br> <br>
+        <div class="quote left"> <i class="fa fa-hashtag fa-2x gray"></i>
+          kajex exdb jeni andbbr j mnlahycna un vnbbjpn bnlanc lahycé yja uj vncqxmn mn lnbja. <br>
+          ln lxmjpn lxvvn exdb yxdeni un lxwbcjcna w'nbc yjb canb noorljln ydrbzd'dwn jwjuhbn mn uj anyncrcrxw mn uj unccan uj yudb lxdajwcn mn uj ujwpdn mjwb ujzdnuun ru j ncn nlarc ynavnc mn lxwwjrcan un mnljuujpn. <br>
+          unb vncqxmnb mn lahycjpnb jlcdnuunb anyxbnwc yudcxc bda u'dbjpn mn lun yarenn - lun ydkurl.
+        </div>
+        </div>
+        
+        <br><br>
+        <div class="question reveal-2" style="font-weight: bold">
+          Ecrire une fonction python nommée :<strong> <pre>decryptage</pre></strong> qui prend en paramètre un texte crypté avec le code César  et qui retourne le texte décrypté.
+        </div>
+        
+        <br>
+
+        <div>
+          <div class="indice reveal-3">
+            <i class='fa fa-lightbulb gray'></i>
+            <strong>Indice :</strong>  Dans ce texte, comme de manière générale en français, la lettre la plus présente est le <strong>e</strong>
+          </div>
+        </div>
+        <div class="critere-eval left reveal-4">
+          <h4>Critères d'évaluation :</h4>
+          <ul>
+            <li>Justesse du résultat,</li>
+            <li>Qualité du code,</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="enigme_content center reveal">
+      <h2 class="reveal-1">Réponse</h2>
+        <div class="reveal-2">
+          
+      Entrer le code de la fonction <strong>decryptage</strong> dans l'éditeur de texte ci-dessous : <br>
+      <br>
+
+
+      <form class="form-example" id="reponse-form" method="POST">
+        <input class="invisible" type="text" id="hidden-reponse" name="reponse" >
+        <div class="left">
+          
+          <textarea id="reponse-textarea" rows="20" cols="50" name="reponse__code" form="reponse-form">
+          </textarea>
+        </div>
+         <br>
+         Entrer le message décrypté ci-dessous : <br>
+         <textarea name="reponse__texte-decrypte" id=""  form="reponse-form" style="width: 99%; min-height: 200px;"></textarea>
+        </div>     
+        <div class="form-example reveal-2">
+          <div class="center btn_validation">
+            
+            <br>
+            
+            <button  type="submit" value="" onclick="GrosseMagouille()">Valider votre réponse</button>
+          </div>
+        </form>
+      </div>
+      <div id="popup" class="popup invisible">
+        <div class="popup_content">
+          <h2>Vos résultats ont été enregistrés
+          retour à l'accueil</h2>
+          <div class="content">
+            Vous pouvez retourver votre classement parmis les établissements de l'île dans la partie ....
+          </div>
+        </div>
+      </div>
+      <!--   <script>
+      function updateHTML(){
+      console.log("Ecriture");
+      let codeArea = document.getElementById("codearea_html");
+      let resultArea = document.getElementById("resultarea_html");
+      let content = codeArea.innerHTML;
+      console.log(content);
+      resultArea.innerText = content;
+      }
+      </script> -->
+      <script>
+      let testResult = "{{test_result}}";
+      let final = "{{final}}";
+      console.log(final);
+      let popup = document.getElementById("popup");
+      popup.addEventListener("click", function(evt){
+      popup.classList.remove("visible");
+      popup.classList.add("invisible");
+      });
+      if(final == "True"  ){
+      popup.classList.remove("invisible");
+      popup.classList.add("visible");
+      }
+      </script>
+      <script>
+      var reponseTextArea = document.getElementById("reponse-textarea");
+      var myCodeMirror = CodeMirror(function(elt) {
+      reponseTextArea.parentNode.replaceChild(elt, reponseTextArea);}, {
+      theme: "monokai",
+      indentUnit: 4,
+      keyMap : "sublime",
+      mode:  "python",
+      value: "# Votre réponse ici"
+      });
+      function GrosseMagouille(){
+      document.getElementById("hidden-reponse").value = myCodeMirror.value;
+      }
+      </script>
+    </body>
+  </html>

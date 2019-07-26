@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>LOGIN</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- <link rel="stylesheet" href="/static/css/login.css"> -->
+    
+    <style>
+    html{
+    background: url("/static/images/bg_form8.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Lato', sans-serif;
+
+    /*filter: blur(4px);*/
+    }
+    .wrapper{
+    width:40%;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 10%;
+    height: 60vh;
+    padding: 5%;
+    padding-bottom: 0;
+    background-color: rgba(0,0,0,.6);
+    }
+    select{
+    width: 100%;
+    font-size: 1em;
+    vertical-align:center;
+    text-align: center;
+    min-height: 50px;
+    background: none;
+    color: white;
+    border-bottom: 1px solid white;
+    }
+    
+      fieldset{
+        margin-top: 50px;
+        margin-bottom: auto;
+        color:white;
+        font-size: 1.2em;
+        padding: 20px;
+      }
+
+    option{
+    background: none;
+    color: rgba(0,0,0,.6);
+    border-bottom: 1px solid rgba(0,0,0,.6);
+        }
+
+    option :hover{
+      color:black;
+    }
+
+
+    legend{
+      font-size: 1.3em;
+    }
+    input{
+    width: 100%;
+    font-size: 1em;
+    color: rgba(0,0,0,.6);
+    vertical-align:center;
+    text-align: center;
+    min-height: 50px;
+    }
+    </style>
+  </head>
+  <body>
+    <noscript>
+    <strong>Attention cette page ne fonctionnera pas correctement sans JavaScript activé. Merci de l'activer pour pouvoir continuer.</strong>
+    </noscript>
+    <header>
+    </header>
+    <div class="wrapper">
+      
+      <form method="POST">
+        <fieldset class="form-lycee">
+          <legend>Connexion au Rallye</legend>
+          <select name="lycee" id="choix_lycee">
+            <option value="" disabled selected>Choisissez votre établissement</option>
+ 
+          </select>
+          <br>
+          <br>
+
+          <select name="classe" id="">
+            <option value="" disabled selected>Choisissez votre classe</option>
+          </select>
+          <br><br>
+          <input type="password" name='password' placeholder="Entrer votre password">
+          <br><br>
+          <input type="submit" value="Se connecter">
+          
+ 
+      </fieldset>
+    </form>
+  </div>
+
+
+  <script src="/static/script/login.js">  </script>
+<script>
+  var lycees=[{name:"LPO de Sada", lycee_id:"lpo_01", classes=["NSI01", "NSI02", "NSI03"]}]
+
+  lycees.forEach(function(elmt) {
+    createOpio
+  });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZlt{}}\PYG{n+nt}{html}\PYG{p}{\PYGZgt{}}
+  \PYG{p}{\PYGZlt{}}\PYG{n+nt}{head}\PYG{p}{\PYGZgt{}}
+    \PYG{p}{\PYGZlt{}}\PYG{n+nt}{meta} \PYG{n+na}{charset}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}utf\PYGZhy{}8\PYGZdq{}}\PYG{p}{\PYGZgt{}}
+    \PYG{p}{\PYGZlt{}}\PYG{n+nt}{title}\PYG{p}{\PYGZgt{}}Bonjour\PYG{p}{\PYGZlt{}/}\PYG{n+nt}{title}\PYG{p}{\PYGZgt{}}
+  \PYG{p}{\PYGZlt{}/}\PYG{n+nt}{head}\PYG{p}{\PYGZgt{}}
+  \PYG{p}{\PYGZlt{}}\PYG{n+nt}{body} \PYG{n+na}{style}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}}
+\PYG{l+s}{  background\PYGZhy{}image: url(\PYGZsq{}/static/images/bonjour.jpg\PYGZsq{});}
+\PYG{l+s}{  background\PYGZhy{}size: cover;\PYGZdq{}}\PYG{p}{\PYGZgt{}}
+
+\PYG{p}{\PYGZlt{}}\PYG{n+nt}{h1}\PYG{p}{\PYGZgt{}}Bonjour l\PYGZsq{}équipe\PYG{p}{\PYGZlt{}/}\PYG{n+nt}{h1}\PYG{p}{\PYGZgt{}}
+\PYG{p}{\PYGZlt{}}\PYG{n+nt}{ul}\PYG{p}{\PYGZgt{}}
+\PYGZob{}\PYGZpc{} for nom in equipe \PYGZpc{}\PYGZcb{}
+  \PYG{p}{\PYGZlt{}}\PYG{n+nt}{li}\PYG{p}{\PYGZgt{}}\PYGZob{}\PYGZob{}nom\PYGZcb{}\PYGZcb{}\PYG{p}{\PYGZlt{}/}\PYG{n+nt}{li}\PYG{p}{\PYGZgt{}}
+\PYGZob{}\PYGZpc{} endfor \PYGZpc{}\PYGZcb{}
+\PYG{p}{\PYGZlt{}/}\PYG{n+nt}{ul}\PYG{p}{\PYGZgt{}}
+  \PYG{p}{\PYGZlt{}/}\PYG{n+nt}{body}\PYG{p}{\PYGZgt{}}
+\PYG{p}{\PYGZlt{}/}\PYG{n+nt}{html}\PYG{p}{\PYGZgt{}}
+\end{Verbatim}

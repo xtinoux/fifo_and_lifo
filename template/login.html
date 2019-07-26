@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>LOGIN</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/login.css">
+    
+  </head>
+  <body background="/static/images/fond_login.gif">
+    <noscript>
+      <strong>Attention cette page ne fonctionnera pas correctement sans JavaScript activé. Merci de l'activer pour pouvoir continuer.</strong>
+    </noscript>
+    <header>
+      <h1 class="login-titre">IDENTIFICATION</h1>
+    </header>
+
+    <form method="POST">
+      <fieldset class="form-lycee">
+        <legend>1-Choisissez votre lycee</legend>
+          <div class="form-radio">
+            {%for lycee in ma_variable%}
+              <input type="radio" id="{{lycee}}" name="lycee" value="{{lycee}}" onclick="DisplayListeSection({{ma_variable}})">
+              <label for="{{lycee}}">{{lycee}}</label><br/>
+            {%endfor%}        
+          </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend>2-Choisissez votre classe</legend>
+          <div class="form-radio" id="formsection">
+            <div id="first-el"> </div> 
+          </div>
+      </fieldset>
+
+      <fieldset class="form-passwd" id="passwd" disabled>
+        <legend>3-Vous pouvez maintenant vous identifier</legend>
+          <label for="name">Votre mot de passe:</label>
+          <input type="password" name="password" id="password" required><br>
+          <input type="submit" value="Connexion">
+      </fieldset>
+    </form>
+
+<!--     <main>
+      <div class="question">
+        <div class="question-statement"></div>
+        <div class="question-answers">
+        </div>
+        <div class="question-footer">
+          <button>Valider</button>
+        </div>
+      </div>
+    </main>
+
+    <div class="overlay">
+      <div class="result">
+        <h2>Quiz terminé</h2>
+        <div class="content"></div>
+      </div>
+    </div> -->
+  <script src="/static/script/login.js">  </script>
+  </body>
+</html>

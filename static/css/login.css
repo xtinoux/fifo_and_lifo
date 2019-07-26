@@ -1,0 +1,78 @@
+
+
+
+.login-titre {
+	color: #ff0000;
+	font-size: 50px;
+	position: relative;
+	text-align: center;
+}
+
+
+.form-lycee {
+	background: rgba(192,192,192,0.4);
+	position:absolute;
+	top:20%;
+	left: 5%;
+	width: auto;
+	height: auto;
+}
+
+.form-lycee:hover {
+	background: rgba(192,192,192,0.7);
+}
+
+
+.form-radio {
+	position: relative;
+	top: 20%;
+	left: 0%;
+	width: auto;
+	height: auto;
+	border: 1;
+	background: rgba(192,192,192,0);
+}
+
+input[type=radio]:hover + label {
+	background: rgba(230,230,230,1);
+}
+
+.form-section {
+	position: absolute;
+	top:40%;
+	left: 30%;
+	width: auto;
+	height: auto;
+	border: 1;
+	background: rgba(192,192,192,0.4);
+}
+
+.form-section:hover {
+	background: rgba(192,192,192,0.7);
+}
+
+
+.form-passwd {
+	position: absolute;
+	top:60%;
+	left: 50%;
+	width: auto;
+	height: auto;
+	border: 1;
+	background: rgba(210,210,210,0.4);
+}
+
+.form-passwd:hover {
+	background: rgba(210,210,210,0.7);
+}
+
+.form-passwd:disabled {
+	color: rgb(192,192,192);
+}
+
+.form-btn {
+	color: #ff0000;
+	font-size: 50px;
+	position: absolute;
+	text-align: center;
+}
