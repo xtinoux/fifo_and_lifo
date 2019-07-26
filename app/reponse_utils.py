@@ -19,14 +19,8 @@ def timer(fonction_a_decorer):
     return wrapper
  
  
-def addition():
-    print(1+1)
-    return(2+2)
-
-
-def fonction_qui_prend_son_temps():
-    time.sleep(1)
+ 
 
 
 if __name__ == '__main__':
-    addition()
+    pass

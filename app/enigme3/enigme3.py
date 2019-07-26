@@ -26,15 +26,18 @@ alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q",
 print(alphabet_crypte)
 
 
-test_caractere_special():
-	"""
 
+
+
+eval_caractere_special():
+	"""
+	
 	"""
 	for texte in caracteres_specials:
 		texte_decrypte = decryptage(texte)
 		self.assertEqual(texte_decrypte, texte)
 
-test_caractere_normal():
+eval_caractere_normal():
 	"""
 
 	"""

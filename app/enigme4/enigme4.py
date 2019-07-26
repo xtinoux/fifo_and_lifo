@@ -54,6 +54,12 @@ def decrypter(texte, alphabet=alphabet):
 
 
 def pourcentage_reussite(texte_reponse):
+    """
+    Défini le pourcentage de caractères décryptés
+
+    @arg {str} : texte reponse
+    @return {dic} : 'nb_erreur', 'nb_caracteres_testes', 'pourcentage_reussite'
+    """
     nb_caracteres_original = len([lettre for lettre in texte])
     nb_caracteres_reponse = len([lettre for lettre in texte_reponse])
     nb_caracteres = min(nb_caracteres_original, nb_caracteres_reponse)
@@ -73,6 +79,14 @@ def pourcentage_reussite(texte_reponse):
       "nb_caracteres_testes": nb_caracteres_alpha,
       "pourcentage_reussite": caracteres_ok / nb_caracteres_alpha * 100}
 
+
+def robustesse():
+    """
+    Evalue la robustesse de la focntion
+
+    @arg {str} : texte reponse
+    @return {dic} : 'nb_erreur', 'nb_caracteres_testes', 'pourcentage_reussite'
+    """
 
 if __name__ == '__main__':
     texte_crypte = crypter(texte)
