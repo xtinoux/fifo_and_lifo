@@ -1,0 +1,29 @@
+# site principal : fifoandlifo.fr
+# the upstream component nginx needs to connect to
+
+upstream fifoandlifo {
+    server  unix:///tmp/fifoandlifo.sock;
+    server 127.0.0.1:8000;
+}
+
+# configuration of the server
+server {
+    # the port your site will be served on
+    listen      80;
+    server_name fifoandlifo.fr;
+    charset     utf-8;
+
+    # max upload size
+    client_max_body_size 75M;   # adjust to taste
+
+
+    location /static {
+        alias /var/www/html/fifoandlifo/static; # pour servir les ficier static par nginx plus rapidement
+    }
+
+    # Finally, send all non-media requests to the Django server.
+    location / {
+        uwsgi_pass  fifoandlifo;
+        include     uwsgi_params; # the uwsgi_params file you installed
+    }
+}
