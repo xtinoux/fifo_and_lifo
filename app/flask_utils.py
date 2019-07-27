@@ -14,7 +14,7 @@ from flask import   Flask,\
                     session
 
 
-def login_as(*args,):
+def login_as(user_type, redirection="auth_individuel"):
     """
     Décorateur qui gère l'authentification des pages demandées.
     Les utilisateurs de type "admin" sont toujours autorisés.
@@ -23,7 +23,7 @@ def login_as(*args,):
         exemple : rallye, eleve, prof
     """
     permissions = ["admin"]
-    permissions.extend(args)
+    permissions.extend(user_type)
     def decorateur(fonction_a_decorer):
         @functools.wraps(fonction_a_decorer)
         def wrapper(*args, **kwargs):
@@ -35,10 +35,10 @@ def login_as(*args,):
                     return fonction_a_decorer(*args, **kwargs)
                 else :
                     print("Vous n'avez pas la permission d'acceder à cette page")
-                    return render_template("login.html")
+                    return redirect(url_for(redirection))
             except Exception as e:
                 print(e)
                 print("Vous n'êtes pas logger, il faut s'authentifier en premier")
-                return render_template("login.html")            #fin du timer
+                return redirect(url_for(redirection))            #fin du timer
         return wrapper
     return decorateur
