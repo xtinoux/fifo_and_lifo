@@ -21,5 +21,7 @@ test:
 
 dev-deployement:
   stage: dev-deployement
+
+  script:
     - apt install lftp
-    - ./syncFTP-dev.sh
+    - ./syncFTP_dev.sh
