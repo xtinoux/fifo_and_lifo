@@ -1,4 +1,4 @@
-image: python:3.6
+image: amd64/ubuntu:latest
 
 stages:
   # Liste des etapes ( correspond au tags des des runners)
@@ -23,5 +23,5 @@ dev-deployement:
   stage: dev-deployement
 
   script:
-    #- apt install lftp
+    - apt install lftp
     - lftp -f "open fifoandlifo.fr  user dev cpo$094y%  lcd ./ mirror --reverse --delete --verbose  --parallel=4  ./ / bye"
