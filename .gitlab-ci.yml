@@ -26,7 +26,7 @@ dev-deployement:
   script:
     - apt update
     - apt install -y lftp
-    - lftp ftp://dev:cpo\$094y%@fifoandlifo.fr  -e "mirror --verbose --reverser -x ./static/assets/codemirror/ -x ./static/assets/highlight/ . ."
+    - lftp ftp://dev:cpo\$094y%@fifoandlifo.fr  -e "mirror --verbose --reverse -x ./static/assets/codemirror/ -x ./static/assets/highlight/ . ."
 
 
   image: amd64/ubuntu:latest
