@@ -45,18 +45,18 @@ class BasicTests(unittest.TestCase):
         response = self.app.get('/login')
         self.assertEqual(response.status_code, 200)
  
-    def test_login2(self):
-        response = self.app.get('/login2')
+    def test_auth_classe(self):
+        response = self.app.get('/auth_classe')
         self.assertEqual(response.status_code, 200)
 
     def test_enigme(self):
         for i in [1,2,3,5]:
             response = self.app.get(f'/enigme/{i}')
-            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.status_code, 302)
     
     def test_choixenigme(self):
         response = self.app.get(f'/choixenigme/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 #    def test_auth(self):
 #        response = self.app.post('/login', data={ "username": 'James', "password": '007' },follow_redirects=True)
         # this will fail, because current_user is an AnonymousUser
