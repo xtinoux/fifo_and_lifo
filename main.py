@@ -51,7 +51,7 @@ def debug_session():
 
 
 @app.route('/bonjour')
-@login_as(session,"eleve", "prof", "rallye")
+@login_as(type="rallye",redirect="login_classe")
 def bonjour():
     """
     Page de présentation de l'équipe : 
@@ -193,6 +193,17 @@ def admin():
             session["uid"] = user["uid"]     
             session["is_admin"] = user["is_admin"]           
     
+
+@app.route("/restart", methods=['POST'])
+def restart():
+    """
+    Permet de redemarrer le serveur de dev
+    Utile pour la CI de GITLAB
+    """
+    if request.method == "POST":
+        if request.form.get('token') == "Gwf7H6hHimEL4B6B":
+            os.system("supervisordctl restart dev.fifoandlifo")
+
 
 @app.route('/WelcomeKaribou')
 def Welcome_Karibou():
