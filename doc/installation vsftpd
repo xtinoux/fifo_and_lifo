@@ -1,0 +1,54 @@
+apt install vsftpd
+nano /etc/vsftpd.conf
+
+userlist_deny=NO
+userlist_enable=YES
+userlist_file=/etc/vsftpd.user_list
+
+adduser  master --home /var/www/html/fifoandlifo
+adduser  master www-data
+chown -R master:www-data /var/www/html/fifoandlifo
+
+
+fichier /etc/vsftpd.conf
+
+# daemon started from an initscript.
+listen=NO
+listen_ipv6=YES
+# Allow anonymous FTP? (Disabled by default).
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+# Activate directory messages - messages given to remote users when they
+# go into a certain directory.
+dirmessage_enable=YES
+use_localtime=YES
+#
+# Activate logging of uploads/downloads.
+xferlog_enable=YES
+# Make sure PORT transfer connections originate from port 20 (ftp-data).
+connect_from_port_20=YES
+secure_chroot_dir=/var/run/vsftpd/empty
+#
+# This string is the name of the PAM service vsftpd will use.
+pam_service_name=vsftpd
+#
+# This option specifies the location of the RSA certificate to use for SSL
+# encrypted connections.
+rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
+rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
+ssl_enable=NO
+
+#
+# Uncomment this to indicate that vsftpd use a utf8 filesystem.
+#utf8_filesystem=YES
+userlist_deny=NO
+userlist_enable=YES
+userlist_file=/etc/vsftpd.user_list
+
+
+
+
+
+
+
