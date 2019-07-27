@@ -24,4 +24,4 @@ dev-deployement:
 
   script:
     #- apt install lftp
-    - ./syncFTP_dev.sh
+    - lftp -f "open fifoandlifo.fr  user dev cpo$094y%  lcd ./ mirror --reverse --delete --verbose  --parallel=4  ./ / bye"
