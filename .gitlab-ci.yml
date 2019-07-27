@@ -26,6 +26,6 @@ dev-deployement:
   script:
     - apt update
     - apt install -y lftp
-    - lftp -f "open fifoandlifo.fr  user dev cpo\$094y%  lcd ./ mirror --reverse --delete --verbose  --parallel=4  ./ / bye"
+    - lftp ftp://$FTP_DEV_USER:$FTP_DEV_PASS@fifoandlifo.fr  -e "mirror --parallel=4  / /"
 
   image: amd64/ubuntu:latest
