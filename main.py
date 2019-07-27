@@ -24,7 +24,6 @@ my_db = Outils_db("static/db/fifoandlifo.db")
 def reponse_db(*args):
     pass
 
-id_classe = 1
 # Initialisation de l'application Flask
 app = Flask(__name__, template_folder='template', static_folder='static')
 app.secret_key = 'motdepassesupersecret'
@@ -51,7 +50,7 @@ def debug_session():
 
 
 @app.route('/bonjour')
-@login_as(type="rallye",redirect="login_classe")
+@login_as(user_type=["rallye"], redirection="auht_classe")
 def bonjour():
     """
     Page de présentation de l'équipe : 
@@ -85,8 +84,8 @@ def login():
     return render_template("login.html", ma_variable=dic_etab_classe)
 
 
-@app.route("/login2", methods=["GET", "POST"])
-def login2():
+@app.route("/auth_classe", methods=["GET", "POST"])
+def auth_classe():
     lycees = my_db.get_classe_by_lycee()
     if request.method == "POST":
         id_classe = request.form['id_classe']
@@ -94,10 +93,29 @@ def login2():
         password = request.form['password']
         auth = my_db.auth_by_idclasse(id_classe=id_classe, password=password)
         if auth:
+            session["type"] = "rallye"
+            session["uid"] = id_classe
+            session["lycee"] = request.form["lycee"]
             flash('You were successfully logged in')
             return redirect(url_for('choix_enigme', nb_enigme=None))
     return render_template("login2.html", lycees = lycees )
 
+
+@app.route('/auth_individuel', methods=['GET', 'POST'])
+def auth_individuel():
+    """
+    Authentification des utilisateurs
+    """
+    if request.method == 'POST':
+        user = request.form.get("user")
+        password = request.form.get("password")
+        if auth(user, password):
+            info_uder = my_db.get_user(user)
+            session["lycee"] = info_user["lycee"]
+            session["classe"] = info_user["classe"]
+            session["uid"] = info_user["uid"]     
+            session["is_admin"] = info_user["is_admin"]           
+    return "Page d'authentification - A FAIRE"
 
 @app.route("/logout")
 def logout():
@@ -108,11 +126,13 @@ def logout():
     session.pop('classe', None)
     session.pop('lycee', None)
     session.pop('type', None)
+    session.pop('enigmes_auth', None)
     return "logout"
 
 
 @app.route('/enigme/', methods=['GET', 'POST'])
 @app.route('/enigme/<int:nb_enigme>', methods=['GET', 'POST'])
+@login_as(["rallye"],"auth_classe")
 def enigme(nb_enigme=None):
     """
     Gestion des enigmes
@@ -164,6 +184,7 @@ def enigme(nb_enigme=None):
 
 @app.route('/choixenigme/', methods=['GET', 'POST'])
 @app.route('/choixenigme/<int:nb_enigme>', methods=['GET', 'POST'])
+@login_as(["rallye"],"auth_classe")
 def choix_enigme(nb_enigme=None):
     """
     Choix des enigmes
@@ -178,21 +199,6 @@ def choix_enigme(nb_enigme=None):
         enigme = enigmes[nb_enigme % len_enigmes]
     return render_template('choixenigme.html', enigme=enigme, nb_enigme=nb_enigme, len_enigmes=len_enigmes)
 
-
-@app.route('/admin', methods=['GET', 'POST'])
-def admin():
-    """
-    Authentification des utilisateurs
-    """
-    if request.method == 'POST':
-        user = request.form.get("user")
-        password = request.form.get("password")
-        if auth(user, password):
-            session["lycee"] = user["lycee"]
-            session["classe"] = user["classe"]
-            session["uid"] = user["uid"]     
-            session["is_admin"] = user["is_admin"]           
-    
 
 @app.route("/restart", methods=['POST'])
 def restart():
@@ -214,12 +220,6 @@ def Welcome_Karibou():
 @app.route('/testdesignprojet')
 def testdesignprojet():
     return render_template('testdesignprojet.html')
-
-
-@app.route('/test')
-def test():
-    return render_template('carousel.html', couleurs = VIOLETS, couleurs_d = VIOLETS_D, VIOLETS_D= VIOLETS_D, JAUNES_D=JAUNES_D, TURQUOISES_D=TURQUOISES_D)
-
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8888, debug=True)
