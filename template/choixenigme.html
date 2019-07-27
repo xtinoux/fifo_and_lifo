@@ -203,7 +203,7 @@
           </span>
         </p>
         
-        <button>Choisir cette mission</button>
+        <button id="choix">Choisir cette mission</button>
       </div>
       <div class="wrapper-info"
         style="display:inline-block;float: right;width: 30%;vertical-align: top">
@@ -251,6 +251,13 @@
           </div>
         </div>
     </div>
+    
+  <script>
+      let btnChoix = document.getElementById("choix");
+      btnChoix.addEventListener("click", function(){
+        location.href = '/enigme/{{nb_enigme}}';
+      })
+  </script>
   </body>
   
 </html>
