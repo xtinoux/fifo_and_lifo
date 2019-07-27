@@ -28,7 +28,7 @@ dev-deployement:
     - apt install -y lftp
 
     - ls 
-    - lftp ftp://dev:cpo\$094y%@fifoandlifo.fr  -e "ls"
+    - lftp ftp://dev:cpo\$094y%@fifoandlifo.fr  -e "-mirror ./ ./"
 
 
   image: amd64/ubuntu:latest
