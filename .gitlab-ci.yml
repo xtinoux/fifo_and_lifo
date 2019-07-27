@@ -3,6 +3,7 @@ image: python:3.6
 stages:
   # Liste des etapes ( correspond au tags des des runners)
   - test
+  - dev-deployement
 
 test:
   stage: test
@@ -16,3 +17,9 @@ test:
     # Lancement des tests unitaires
     - python -m unittest tests.test_pages
     #- python -m unittest tests.test_enigme2
+
+
+dev-deployement:
+  stage: dev-deployement
+    - apt install lftp
+    - ./syncFTP-dev.sh

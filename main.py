@@ -4,19 +4,17 @@ import os
 import logging
 import functools
 
+
+
+#Import des modules de l'application
 PATH = os.path.abspath(os.path.split(__file__)[0])
 os.chdir(PATH)
-try:
-    from app.db_utils import *
-    print(1)
-    from app.flask_utils import login_as
-    print(2)
-    from app.test_db import *
-    pritn(3)
-    from app.COULEURS import *
-except Exception as e:
-    print("Erreur dans les importations")
-    print( os.getcwd())
+
+from app.db_utils import *
+from app.flask_utils import login_as
+from app.test_db import *
+from app.COULEURS import *
+
 
 
 my_db = Outils_db("static/db/fifoandlifo.db")
@@ -70,7 +68,6 @@ def login():
     """
     # liste_lycee =  recuperation_noms_etablissements()
     dic_etab_classe= recuperation_etab_et_classes()
-    print(dic_etab_classe)
     if request.method == "POST":
         password = request.form['password']
         lycee = request.form['lycee']
@@ -92,9 +89,13 @@ def login():
 def login2():
     lycees = my_db.get_classe_by_lycee()
     if request.method == "POST":
+        id_classe = request.form['id_classe']
+        print(id_classe)
         password = request.form['password']
-        lycee = request.form['lycee']
-        classe = request.form['section'].replace("radio","")
+        auth = my_db.auth_by_idclasse(id_classe=id_classe, password=password)
+        if auth:
+            flash('You were successfully logged in')
+            return redirect(url_for('choix_enigme', nb_enigme=None))
     return render_template("login2.html", lycees = lycees )
 
 
@@ -148,7 +149,6 @@ def enigme(nb_enigme=None):
             test_value = request.form.get("test")
             reponse_value = request.form.get("reponse")
             if reponse_value:
-                print('Enregistrement de la réponse dans base de donnée')
                 test_result = "Reponse enregistée"
                 reponse_db(id_classe, reponse_value)
                 return render_template(f"enigme{nb_enigme}.html", test_result=test_result, final=True,  couleurs_d=VIOLETS_D)

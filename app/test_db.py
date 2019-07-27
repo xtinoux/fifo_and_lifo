@@ -109,6 +109,14 @@ class Outils_db():
         """
         pass
 
+    def auth_by_idclasse(self, id_classe, password):
+        with connect(self.path_db) as conn:
+            cursor = conn.cursor()
+            cursor.execute("""SELECT   password FROM lycees WHERE id_classe = ? """,(id_classe,))
+            pswd = cursor.fetchone()[0]
+        if password == pswd:
+            return True
+        return False         
 
 def secret(nb_car=6):
     import secrets
@@ -121,6 +129,6 @@ def secret(nb_car=6):
 
 if __name__ == '__main__':
     my_db = Outils_db("../static/db/fifoandlifo.db")
-    print(json.dumps(my_db.get_classe_by_lycee()))
-
+    print(my_db.auth_by_idclasse("sada-1","dsds"))
+    print(my_db.auth_by_idclasse("sada-1","nKrQqq"))
 
