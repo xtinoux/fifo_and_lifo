@@ -95,7 +95,7 @@ def login2():
         password = request.form['password']
         lycee = request.form['lycee']
         classe = request.form['section'].replace("radio","")
-    return render_template("login2.html")
+    return render_template("login2.html", lycees = lycees )
 
 
 @app.route("/logout")

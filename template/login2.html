@@ -12,7 +12,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     font-family: 'Lato', sans-serif;
-
     /*filter: blur(4px);*/
     }
     .wrapper{
@@ -36,27 +35,23 @@
     border-bottom: 1px solid white;
     }
     
-      fieldset{
-        margin-top: 50px;
-        margin-bottom: auto;
-        color:white;
-        font-size: 1.2em;
-        padding: 20px;
-      }
-
+    fieldset{
+    margin-top: 50px;
+    margin-bottom: auto;
+    color:white;
+    font-size: 1.2em;
+    padding: 20px;
+    }
     option{
     background: none;
     color: rgba(0,0,0,.6);
     border-bottom: 1px solid rgba(0,0,0,.6);
-        }
-
-    option :hover{
-      color:black;
     }
-
-
+    option :hover{
+    color:black;
+    }
     legend{
-      font-size: 1.3em;
+    font-size: 1.3em;
     }
     input{
     width: 100%;
@@ -79,37 +74,62 @@
       <form method="POST">
         <fieldset class="form-lycee">
           <legend>Connexion au Rallye</legend>
-          <select name="lycee" id="choix_lycee">
+          <select name="lycee" id="select_lycee" onchange="onChangeLycee(this)">
             <option value="" disabled selected>Choisissez votre établissement</option>
- 
+            
           </select>
           <br>
           <br>
-
-          <select name="classe" id="">
+          <select name="classe" id="select_classe">
             <option value="" disabled selected>Choisissez votre classe</option>
+            <option value="" disabled>Choisissez votre lycée en premier</option>
           </select>
           <br><br>
           <input type="password" name='password' placeholder="Entrer votre password">
           <br><br>
           <input type="submit" value="Se connecter">
           
- 
-      </fieldset>
-    </form>
-  </div>
+          
+        </fieldset>
+      </form>
+    </div>
+    <script>
+    var lycees =  JSON.parse('{{ lycees | tojson | safe}}');
+    console.log(lycees);
+    var select_lycee = document.getElementById("select_lycee");
+    lycees.forEach(function(elmt){
+      let opt = document.createElement('option');
+      opt.value = elmt.lycee;
+      opt.innerHTML = elmt.lycee;
+      select_lycee.appendChild(opt);
+    })
 
 
-  <script src="/static/script/login.js">  </script>
-<script>
-  var lycees=[{name:"LPO de Sada", lycee_id:"lpo_01", classes=["NSI01", "NSI02", "NSI03"]}]
+    function onChangeLycee(select){
+      let lycee = select.options[select.selectedIndex].value;
+      let select_classe = document.getElementById("select_classe");
+      lycees.forEach(function(elmt){
 
-  lycees.forEach(function(elmt) {
-    createOpio
-  });
-</script>
-
-
-
-</body>
+        if (elmt.lycee == lycee){
+          // On nettoie la liste           
+          select_classe.innerHTML="";
+          // On rajoute les options qui vont bien
+          // D'abord le placeholder
+          let opt = document.createElement('option');
+          opt.value = "";
+          opt.innerHTML = "Choisissez votre classe";
+          opt.disabled=true;
+          opt.selected=true;
+          select_classe.appendChild(opt);
+          // Ensuite les classes
+          elmt.classes.forEach(function(el){
+          let opt = document.createElement('option');
+          opt.value = el.id_classe;
+          opt.innerHTML = el.classe;
+          select_classe.appendChild(opt);
+        })
+      }
+    })}
+    </script>
+  </body>
 </html>

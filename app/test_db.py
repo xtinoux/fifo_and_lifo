@@ -1,4 +1,5 @@
 from sqlite3 import connect
+import json 
 
 class Outils_db():
 
@@ -120,6 +121,6 @@ def secret(nb_car=6):
 
 if __name__ == '__main__':
     my_db = Outils_db("../static/db/fifoandlifo.db")
-    print(my_db.get_classe_by_lycee())
+    print(json.dumps(my_db.get_classe_by_lycee()))
 
 
