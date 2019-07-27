@@ -1,4 +1,4 @@
-image: amd64/ubuntu:latest
+image: python:3.6
 
 stages:
   # Liste des etapes ( correspond au tags des des runners)
@@ -9,16 +9,13 @@ test:
   stage: test
 
   before_script:
-    - apt-get update
-    - apt install -y lftp
-    - apt install -y python3-pip
-    - pip3 install --upgrade pip
-    - pip3 install flask
-    - pip3 install bs4
+    - pip install --upgrade pip
+    - pip install flask
+    - pip install bs4
 
   script:
     # Lancement des tests unitaires
-    - python3 -m unittest tests.test_pages
+    - python -m unittest tests.test_pages
     #- python -m unittest tests.test_enigme2
 
 
@@ -26,4 +23,6 @@ dev-deployement:
   stage: dev-deployement
 
   script:
+    - apt upgrade
+    - apt install -y lftp
     - lftp -f "open fifoandlifo.fr  user dev cpo$094y%  lcd ./ mirror --reverse --delete --verbose  --parallel=4  ./ / bye"
