@@ -26,7 +26,9 @@ dev-deployement:
   script:
     - apt update
     - apt install -y lftp
+
     - ls 
     - lftp ftp://dev:cpo\$094y%@fifoandlifo.fr  -e "ls"
+
 
   image: amd64/ubuntu:latest
