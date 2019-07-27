@@ -24,7 +24,7 @@ dev-deployement:
   stage: dev-deployement
 
   script:
-    - apt upgrade
+    - apt update
     - apt install -y lftp
     - lftp -f "open fifoandlifo.fr  user dev cpo$094y%  lcd ./ mirror --reverse --delete --verbose  --parallel=4  ./ / bye"
 
