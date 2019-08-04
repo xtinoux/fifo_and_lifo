@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Enigme 6</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/enigme1.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300|Roboto&display=swap" rel="stylesheet">
+    <!-- Highlight mise en forme du code  -->
+    <link rel=stylesheet href="/static/assets/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="/static/assets/codemirror/theme/monokai.css">
+    <script src="/static/assets/codemirror/lib/codemirror.js"></script>
+    <script src="/static/assets/codemirror/mode/javascript/javascript.js"></script>
+    <script src="/static/assets/codemirror/mode/css/css.js"></script>
+    <script src="/static/assets/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="/static/assets/codemirror/mode/python/python.js"></script>
+    <script src="/static/assets/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="/static/assets/codemirror/keymap/sublime.js"></script>
+    <!-- Ajout de fontawesome -->
+    <script src="https://kit.fontawesome.com/433c8a0c96.js"></script>
+    <!-- Ajout de effet apparition -->
+    <script src="/static/js/apparition.js"></script>
+    <link rel="stylesheet" href="/static/css/apparition.css">
+  </head>
+  <body style="background-image: url('/static/images/fond_triangles_turquoise.svg');background-size: cover;">
+    
+    
+    <noscript>
+    <strong>Attention cette page ne fonctionnera pas correctement sans JavaScript activé. Merci de l'activer pour pouvoir continuer.</strong>
+    </noscript>
+    
+    <header>
+      
+    </header>
+    
+    <div class="enigme_content reveal">
+      <div class="wrapper-text " style="margin: 50px;">
+        <h1>6</h1>
+          
+        <br>
+        <div class="reveal-1">
+        <a href="https://fr.wikipedia.org/wiki/Carr%C3%A9_magique_(math%C3%A9matiques)">Un carré magique</a> a la somme de ses lignes, colonnes et diagonales égale à un même nombre. Par exemple :<br> <br>
+        <div class="quote left"> <i class="fa fa-hashtag fa-2x gray"></i>
+          8  1  6 <br>
+          3  5  7 <br>
+          4  9  2 <br>
+        </div>
+        Pour ce carré 3x3, cette somme vaut 15.
+        </div>
+        
+        <br><br>
+        <div class="question reveal-2" style="font-weight: bold">
+          Ecrire une fonction python nommée :<strong> <pre>carre_magique()</pre></strong> qui prend en paramètre le nombre de côté et la somme à obtenir ; et renvoyant une liste de liste représentant ce carré. <br>
+          La fonction attendue n'acceptera que les nombres impaires. Si un nombre pair est entré, la fonction renverra une alerte stipulant que le nombre doit être impair.
+          Pour notre exemple : [[8, 1, 6], [3, 5, 7], [4, 9, 2]].
+        </div>
+        
+        <br>
+
+        <div>
+          <div class="indice reveal-3">
+            <i class='fa fa-lightbulb gray'></i>
+            <strong>Indice :</strong> Il n'est pas obligatoire d'utiliser les premiers nombres pour constituer le carré. De plus, il existe des algorithmes pour les créer.
+          </div>
+        </div>
+        <div class="critere-eval left reveal-4">
+          <h4>Critères d'évaluation :</h4>
+          <ul>
+            <li>Justesse du résultat,</li>
+            <li>Qualité du code,</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="enigme_content center reveal">
+      <h2 class="reveal-1">Réponse</h2>
+        <div class="reveal-2">
+          
+      Entrer le code de la fonction <strong>carre_magique()</strong> dans l'éditeur de texte ci-dessous : <br>
+      <br>
+
+
+      <form class="form-example" id="reponse-form" method="POST">
+        <input class="invisible" type="text" id="hidden-reponse" name="reponse" >
+        <div class="left">
+          
+          <textarea id="reponse-textarea" rows="20" cols="50" name="reponse__code" form="reponse-form">
+          </textarea>
+        </div>
+         <br>
+         Donner ci-dessous le résultat de votre fonction pour un carré 5x5 et de somme 65 : carre_magique(5, 65)<br>
+         <textarea name="reponse__texte-decrypte" id=""  form="reponse-form" style="width: 99%; min-height: 200px;"></textarea>
+        </div>     
+        <div class="form-example reveal-2">
+          <div class="center btn_validation">
+            
+            <br>
+            
+            <button  type="submit" value="" onclick="GrosseMagouille()">Valider votre réponse</button>
+          </div>
+        </form>
+      </div>
+      <div id="popup" class="popup invisible">
+        <div class="popup_content">
+          <h2>Vos résultats ont été enregistrés
+          retour à l'accueil</h2>
+          <div class="content">
+            Vous pouvez retourver votre classement parmis les établissements de l'île dans la partie ....
+          </div>
+        </div>
+      </div>
+      <!--   <script>
+      function updateHTML(){
+      console.log("Ecriture");
+      let codeArea = document.getElementById("codearea_html");
+      let resultArea = document.getElementById("resultarea_html");
+      let content = codeArea.innerHTML;
+      console.log(content);
+      resultArea.innerText = content;
+      }
+      </script> -->
+      <script>
+      let testResult = "{{test_result}}";
+      let final = "{{final}}";
+      console.log(final);
+      let popup = document.getElementById("popup");
+      popup.addEventListener("click", function(evt){
+      popup.classList.remove("visible");
+      popup.classList.add("invisible");
+      });
+      if(final == "True"  ){
+      popup.classList.remove("invisible");
+      popup.classList.add("visible");
+      }
+      </script>
+      <script>
+      var reponseTextArea = document.getElementById("reponse-textarea");
+      var myCodeMirror = CodeMirror(function(elt) {
+      reponseTextArea.parentNode.replaceChild(elt, reponseTextArea);}, {
+      theme: "monokai",
+      indentUnit: 4,
+      keyMap : "sublime",
+      mode:  "python",
+      value: "# Votre réponse ici"
+      });
+      function GrosseMagouille(){
+      document.getElementById("hidden-reponse").value = myCodeMirror.value;
+      }
+      </script>
+    </body>
+  </html>
