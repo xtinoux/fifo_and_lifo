@@ -15,25 +15,23 @@ from test_enigme6 import test_complet
 from carre_magique import carre_magique
 
 # ordre du carre :
-N = [3,5,7,15]
+N = [3,5]
 # Somme à obtenir :
-S = [15,42,87,154]
+S = [15,65]
 
 print("***************************************")
 print("          BATTERIE DE TESTS ")
-print("-----------------------------------\n")
+print("***************************************")
 # on appelle la fonction du competiteur
-for n in N:
-    for s in S:
-        M = carre_magique(n,s)
-        # puis on la teste avec notre fonction
-        if isinstance(M, list):
-            # si M est une liste
-            print(F"Carre : {n}x{n} - somme = {s} :")
-            print(F"{test_complet(M,n,s)}\n")
-#        else:
-#            # sinon on affiche ce que renvoie la fonction du competiteur
-#            print(M)
-print("-------------------------------------")
+T = list(zip(N,S))
+for x in T:
+    print("\n")
+    print(F"TEST : Carre {x[0]}x{x[0]} - somme = {x[1]}")
+    print("-----------------------------")
+    M = carre_magique(x[0],x[1])
+    print(test_complet(M,x[0],x[1]))
+
+print("\n")
+print("***************************************")
 print("                FIN DES TESTS ")
 print("***************************************")

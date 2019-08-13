@@ -52,7 +52,7 @@ def test_diago(M):
         s = s + M[i][i]
     S = 0
     for i in range(N):
-        S = S + M[3-i-1][i]
+        S = S + M[N-i-1][i]
     if s == S:
         return s
     return 0
@@ -96,16 +96,7 @@ def test_col(M):
                 return s[0]
     return col
 
-
-
-def test_complet(M,N,S):
-    '''
-    On teste si c'est un carre, sans 0 et sans nombre identique, avec des entiers positifs ...
-    Puis, on teste sur les diagonales, les lignes et les colonnes si la somme est identique, egale
-    à ce qui est prevu.
-    '''
-    val = 0
-    neg = " Erreur(s) detectee(s) --> "
+def test_carre(M,N,S,pos,neg):
     if test_forme(M,N) == 0:
         return neg + F"Ce n'est pas un carre {N} x {N} !"
     else:
@@ -123,14 +114,44 @@ def test_complet(M,N,S):
             s2 = test_lig(M)
             s3 = test_col(M)
             if s1 == s2 == s3 == S:
-                return F"***** VALIDE ***** Le carre retourne est magique de somme {S}."
+                return pos + F"Le carre retourné est magique de somme {S}."
             elif s1 == s2 == s3 != S:
                 return neg + F"Ce carre est magique, mais de somme {s1}, et non {S}."
-    return neg + "Ce carre n'est pas magique !"
+    return neg + F"Ce carre n'est pas magique ! (lignes, colonnes, diagonales : {s1},{s2},{s3})"
 
+def test_complet(M,N,S):
+    '''
+    On teste si c'est un carre, sans 0 et sans nombre identique, avec des entiers positifs ...
+    Puis, on teste sur les diagonales, les lignes et les colonnes si la somme est identique, egale
+    à ce qui est prevu.
+    '''
+    val = 0
+    neg = " Erreur(s) detectee(s) --> "
+    pos = "***** SUCCES *****"
+    if isinstance(M, list) == False:
+        return neg + "La fonction ne renvoie pas une liste !"
+    else:
+        if len(M) != 2:
+            return neg + "La fonction ne renvoie pas une liste conforme !"
+    if M[0] == 0:
+        if N%2 == 0:
+            return pos + "La fonction détecte bien que N est pair"
+        else:
+            return neg + "La fonction ne détecte pas que N est pair"
+    if M[0] == 1:
+        if S < N*(N**2+1)//2:
+            return pos + "La fonction détecte bien que la somme demandée est trop faible"
+        else:
+            return neg + "La fonction ne détecte pas que la somme demandée est trop faible"
+    if M[0] == 2:
+        return "Ce cas n'est pas encore traité"
+    if M[0] == 3:
+        res = test_carre(M[1],N,S,pos,neg)
+        return res
 
 
 if __name__ == '__main__':
-    carre = [[6,1,8],[7,5,3],[2,9,4]]
-    print(test_complet(carre,3,15))
+    print(test_carre([[2,13,9,14],[16,7,11,4],[15,8,12,3],[5,10,6,17]],4,38,"ok ! ","non ! "))
+    
+
 
