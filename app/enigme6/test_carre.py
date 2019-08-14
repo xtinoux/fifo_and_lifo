@@ -15,9 +15,9 @@ from test_enigme6 import test_complet
 from carre_magique import carre_magique
 
 # ordre du carre :
-N = [3,5]
+N = [3,11,4,7,3,4]
 # Somme à obtenir :
-S = [15,65]
+S = [15,55,34,168,16,35]
 
 print("***************************************")
 print("          BATTERIE DE TESTS ")
